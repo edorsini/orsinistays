@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orsini Stays — Punta Cana Vacation Rentals</title>
+    <meta
+      name="description"
+      content="Two boutique rentals in Punta Cana/Cap Cana: Punta Cana Dreamcatcher and Cap Cana Happy Place. Explore photos, compare, and book securely."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta
+      property="og:title"
+      content="Cap Cana Stays — Punta Cana Vacation Rentals"
+    />
+    <meta
+      property="og:description"
+      content="Two boutique rentals in Punta Cana/Cap Cana: Punta Cana Village Dreamcatcher and Cap Cana Happy Place. Explore photos, compare, and book securely."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/img/cover.jpg" />
+    <style>
+      :root {
+        --bg: #0f172a;
+        --card: #111827;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent-2: #a78bfa;
+        --text: #e5e7eb;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 20px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+      }
+      .logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        /* background: linear-gradient(135deg, var(--accent), var(--accent-2)); */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #0b1220;
+        font-weight: 900;
+      }
+      nav a {
+        margin-left: 18px;
+        color: var(--muted);
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 18px;
+        border-radius: 14px;
+        background: var(--accent);
+        color: #0b1220;
+        font-weight: 700;
+      }
+      .btn.secondary {
+        background: transparent;
+        border: 1px solid #334155;
+        color: var(--text);
+      }
+      .hero {
+        padding: 56px 0;
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: 40px;
+        line-height: 1.1;
+        margin: 0 0 14px;
+      }
+      .hero p {
+        color: var(--muted);
+        margin: 0 auto 26px;
+        max-width: 660px;
+      }
+      .grid {
+        display: grid;
+        gap: 22px;
+      }
+      @media (min-width: 900px) {
+        .grid.cols-2 {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid #1f2937;
+        border-radius: 22px;
+        overflow: hidden;
+      }
+      .card .media {
+        position: relative;
+        aspect-ratio: 16/9;
+        background: #0b1220;
+      }
+      .card .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(8px);
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid #334155;
+        font-size: 12px;
+        color: #cbd5e1;
+      }
+      .card .content {
+        padding: 18px;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border: 1px solid #334155;
+        border-radius: 999px;
+        color: #cbd5e1;
+        font-size: 13px;
+      }
+      .pill + .pill {
+        margin-left: 8px;
+      }
+      .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 12px 0 16px;
+      }
+      .cta {
+        display: flex;
+        gap: 10px;
+      }
+      .section {
+        padding: 40px 0;
+      }
+      h2 {
+        font-size: 28px;
+        margin: 0 0 12px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #1f2937;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      th,
+      td {
+        padding: 14px 12px;
+        border-bottom: 1px solid #1f2937;
+        text-align: left;
+      }
+      tr:nth-child(even) {
+        background: #0b1220;
+      }
+      .map {
+        width: 100%;
+        height: 320px;
+        border: 1px solid #1f2937;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .faq summary {
+        cursor: pointer;
+        padding: 14px 18px;
+        border: 1px solid #1f2937;
+        border-radius: 16px;
+        margin-bottom: 10px;
+        background: #0b1220;
+      }
+      footer {
+        margin-top: 40px;
+        padding: 28px 0;
+        border-top: 1px solid #1f2937;
+        color: #94a3b8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand">
+          <span class="logo"
+            ><img
+              src="ed-amanda.png"
+              style="
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                object-fit: cover;
+              "
+          /></span>
+          <span>Orsini Stays</span>
+        </div>
+        <nav>
+          <a href="#stays">Stays</a>
+          <a href="#compare">Compare</a>
+          <a href="#location">Location</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1>Two Punta Cana stays. One easy place to book.</h1>
+        <p>
+          Welcome! Explore our Punta Cana vacation rentals — Punta Cana
+          Dreamcatcher and Cap Cana Happy Place. Browse details and book
+          securely via our official listing links.
+        </p>
+        <div class="cta" style="justify-content: center">
+          <a class="btn" href="#stays">Explore Stays</a>
+          <a class="btn secondary" href="#compare">Compare</a>
+        </div>
+      </section>
+
+      <section id="stays" class="section">
+        <h2>Our Stays</h2>
+        <p class="muted">Swap in your photos, details, and Airbnb links.</p>
+        <div class="grid cols-2">
+          <!-- Property A -->
+          <article class="card">
+            <div class="media">
+              <img
+                src="https://a0.muscache.com/im/pictures/miso/Hosting-734906941671468102/original/e3943f68-ef82-4130-ac88-eaae53f974a6.jpeg?im_w=1200"
+                alt="Property A cover"
+              />
+              <span class="badge">Sleeps 4</span>
+            </div>
+            <div class="content">
+              <h3 style="margin: 0 0 6px">Punta Cana Village Dreamcatcher</h3>
+              <p class="muted" style="margin: 0 0 10px">
+                Punta Cana • Details on listing
+              </p>
+              <div class="stack">
+                <span class="pill">Self check‑in</span>
+                <span class="pill">Fast Wi‑Fi</span>
+                <span class="pill">Free parking</span>
+                <span class="pill">Washer/Dryer</span>
+                <span class="pill">Walkable</span>
+                <span class="pill">Workspace</span>
+                <span class="pill">Pool View</span>
+              </div>
+              <p style="margin: 0 0 14px">
+                The Dreamcatcher is a spacious 2-bedroom retreat in Puntacana
+                Village, just minutes from the airport, shops, restaurants, and
+                Playa Blanca beach. With air-conditioned rooms, high-speed
+                Wi-Fi, pool access, and thoughtful amenities, it's a secure and
+                relaxing home base for your Punta Cana getaway.
+              </p>
+              <div class="cta">
+                <a
+                  class="btn"
+                  href="https://www.puntacanadreamcatcher.com"
+                  target="_blank"
+                  rel="noopener"
+                  >View Listing on Airbnb</a
+                >
+                <a class="btn secondary" href="#compare">Compare</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Property B -->
+          <article class="card">
+            <div class="media">
+              <img
+                src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTQxNTU2ODk5ODMxNjU1NTY4Mg==/original/6d9af7b8-1844-40f6-bb14-e342509b556b.jpeg?im_w=1200"
+                alt="Property B cover"
+              />
+              <span class="badge">Sleeps 2</span>
+            </div>
+            <div class="content">
+              <h3 style="margin: 0 0 6px">Cap Cana Happy Place</h3>
+              <p class="muted" style="margin: 0 0 10px">
+                Cap Cana • Details on listing
+              </p>
+              <div class="stack">
+                <span class="pill">Self check‑in</span>
+                <span class="pill">Fast Wi‑Fi</span>
+                <span class="pill">Washer/Dryer</span>
+                <span class="pill">Free parking</span>
+                <span class="pill">Pool View</span>
+              </div>
+              <p style="margin: 0 0 14px">
+                Cap Cana Happy Place is a stylish 2nd-floor apartment with pool
+                and gym access, located in a gated community just minutes from
+                beaches, golf, and top attractions. With air-conditioned rooms,
+                high-speed Wi-Fi, Netflix TVs, and thoughtful amenities, it
+                offers a secure and comfortable retreat in the heart of Cap
+                Cana.
+              </p>
+              <div class="cta">
+                <a
+                  class="btn"
+                  href="https://www.capcanahappyplace.com"
+                  target="_blank"
+                  rel="noopener"
+                  >View Listing on Airbnb</a
+                >
+                <a class="btn secondary" href="#compare">Compare</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="compare" class="section">
+        <h2>Compare at a glance</h2>
+        <div class="card" style="padding: 16px">
+          <div style="overflow-x: auto">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Punta Cana Dreamcatcher</th>
+                  <th>Cap Cana Happy Place</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Guests</td>
+                  <td>4</td>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <td>Bedrooms</td>
+                  <td>2</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td>Beds</td>
+                  <td>1 King & 1 Queen</td>
+                  <td>1 King</td>
+                </tr>
+                <tr>
+                  <td>Bathrooms</td>
+                  <td>2</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td>Parking</td>
+                  <td>2 parking spaces</td>
+                  <td>1 parking space underground</td>
+                </tr>
+                <tr>
+                  <td>Elevator</td>
+                  <td>No</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td>Floor</td>
+                  <td>2nd Floor</td>
+                  <td>2nd Floor</td>
+                </tr>
+
+                <tr>
+                  <td>Distance to beach</td>
+                  <td>7 minutes to Playa Blanca</td>
+                  <td>8 minutes to Juanillo Beach</td>
+                </tr>
+                <tr>
+                  <td>Workspace</td>
+                  <td>Yes</td>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <td>Kitchen</td>
+                  <td>Yes</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td>Outdoor space</td>
+                  <td>Yes, balcony with pool view!</td>
+                  <td>Yes, balcony with pool view!</td>
+                </tr>
+                <tr>
+                  <td>Airport (PUJ)</td>
+                  <td>5 minutes away</td>
+                  <td>17 minutes away</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="location" class="section">
+        <h2>Location</h2>
+        <p class="muted">
+          Drop in your real map pins below. Replace the src URLs with Google
+          Maps embeds.
+        </p>
+        <div class="grid cols-2">
+          <div class="card" style="padding: 16px">
+            <h3 style="margin-top: 0">Punta Cana Village Dreamcatcher</h3>
+            <div class="map">
+              <iframe
+                title="Map A"
+                width="100%"
+                height="100%"
+                style="border: 0"
+                loading="lazy"
+                allowfullscreen
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d332.5969510001759!2d-68.37329412810276!3d18.556735082441943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea893c7fe6fae39%3A0x5d74ab96fdf09549!2sThe%20Dreamcatcher%20%40%20Punta%20Cana%20Village!5e0!3m2!1sen!2sus!4v1758213507353!5m2!1sen!2sus"
+              >
+                ></iframe
+              >
+            </div>
+          </div>
+          <div class="card" style="padding: 16px">
+            <h3 style="margin-top: 0">Cap Cana Happy Place</h3>
+            <div class="map">
+              <iframe
+                title="Map B"
+                width="100%"
+                height="100%"
+                style="border: 0"
+                loading="lazy"
+                allowfullscreen
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d236.5210971186236!2d-68.41585034194081!3d18.46836312446729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea89b0e3cfa18f1%3A0x1b8a5996c9f69a0a!2sMy%20Happy%20Place%20%40%20Cap%20Cana!5e0!3m2!1sen!2sus!4v1758213600354!5m2!1sen!2sus"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Local guide highlights</h2>
+        <div class="grid cols-2">
+          <div class="card" style="padding: 16px">
+            <h3 style="margin-top: 0">Eat & Drink</h3>
+            <ul class="muted">
+              <li>Café Juniper — great coffee + pastries (5 min walk)</li>
+              <li>Marina Grill — seafood with views (10 min drive)</li>
+              <li>Brick & Barrel — wood‑fired pizza (8 min walk)</li>
+            </ul>
+          </div>
+          <div class="card" style="padding: 16px">
+            <h3 style="margin-top: 0">Do & See</h3>
+            <ul class="muted">
+              <li>Waterfront Promenade — sunrise strolls</li>
+              <li>City Museum — rainy‑day favorite</li>
+              <li>Trailhead Park — easy family loop</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="section">
+        <h2>FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>How do I book?</summary>
+            <div style="padding: 10px 4px" class="muted">
+              Click “View Listing on Airbnb” for the property you want. All
+              booking and payment happens securely on Airbnb.
+            </div>
+          </details>
+          <details>
+            <summary>Do you allow pets?</summary>
+            <div style="padding: 10px 4px" class="muted">No pets allowed.</div>
+          </details>
+          <details>
+            <summary>Is early check‑in available?</summary>
+            <div style="padding: 10px 4px" class="muted">
+              We’ll try! Message us on Airbnb and we’ll confirm based on
+              cleaning schedule.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <h2>About & Contact</h2>
+        <div class="card" style="padding: 18px">
+          <p class="muted" style="margin: 0 0 10px">
+            We’re hosts who love thoughtful design and smooth, self‑serve stays.
+            Questions? Reach out anytime.
+          </p>
+          <div class="cta">
+            <a class="btn" href="mailto:hello@yourstays.com">Email us</a>
+            <a class="btn secondary" href="#stays">See the homes</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>
+          © <span id="year"></span> Dreamcatcher Stays • All rights reserved
+        </div>
+      </footer>
+    </div>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
