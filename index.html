@@ -307,6 +307,7 @@
         /* show button on mobile */
         .menu-toggle {
           display: inline-flex;
+          color: #fff;
         }
         /* hide inline nav by default on mobile */
         header nav {
@@ -363,7 +364,26 @@
             <span>Orsini Stays</span>
           </div>
         </a>
-        <nav>
+
+        <!-- Hamburger button (shows on mobile) -->
+        <button
+          class="menu-toggle"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+          aria-label="Open menu"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M3 6h18M3 12h18M3 18h18"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+
+        <nav id="primary-nav">
           <a href="#stays">Stays</a>
           <a href="#compare">Compare</a>
           <a href="#location">Location</a>
