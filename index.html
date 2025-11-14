@@ -266,6 +266,83 @@
         border-top: 1px solid #1f2937;
         color: #94a3b8;
       }
+
+      /* --- hamburger button --- */
+      .menu-toggle {
+        display: none; /* desktop hidden */
+        background: transparent;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        padding: 10px 12px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+      .menu-toggle .bar {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--text);
+        margin: 3px 0;
+        transition: transform 150ms ease, opacity 150ms ease;
+      }
+
+      /* transform to "X" when open */
+      .menu-toggle[aria-expanded="true"] .bar:nth-child(1) {
+        transform: translateY(5px) rotate(45deg);
+      }
+      .menu-toggle[aria-expanded="true"] .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle[aria-expanded="true"] .bar:nth-child(3) {
+        transform: translateY(-5px) rotate(-45deg);
+      }
+
+      /* --- mobile nav behavior --- */
+      @media (max-width: 720px) {
+        header {
+          position: relative;
+        }
+        /* show button on mobile */
+        .menu-toggle {
+          display: inline-flex;
+        }
+        /* hide inline nav by default on mobile */
+        header nav {
+          display: none;
+          position: absolute;
+          right: 0;
+          top: 68px; /* just below header */
+          background: var(--card);
+          border: 1px solid #1f2937;
+          border-radius: 16px;
+          padding: 10px;
+          width: min(240px, 90vw);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+          z-index: 20;
+        }
+        header nav a {
+          display: block;
+          margin: 0; /* override desktop spacing */
+          padding: 10px 12px;
+          color: var(--text);
+          border-radius: 10px;
+        }
+        header nav a:hover {
+          background: #0b1220;
+        }
+
+        /* show when opened */
+        header nav.open {
+          display: block;
+        }
+
+        /* keep header layout tidy on mobile: stack brand + button */
+        header {
+          gap: 8px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -372,7 +449,7 @@
               <span
                 class="badge right"
                 aria-label="Airbnb Guest Favorite Top 1%"
-                >🏆 Top 5% of homes</span
+                >🏆 Top 1% of homes</span
               >
             </div>
             <div class="content">
@@ -729,6 +806,59 @@
     </div>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <script>
+      (function () {
+        const btn = document.querySelector(".menu-toggle");
+        const nav = document.getElementById("primary-nav");
+
+        if (!btn || !nav) return;
+
+        const closeMenu = () => {
+          nav.classList.remove("open");
+          btn.setAttribute("aria-expanded", "false");
+          btn.setAttribute("aria-label", "Open menu");
+        };
+
+        const toggleMenu = () => {
+          const nowOpen = !nav.classList.contains("open");
+          nav.classList.toggle("open", nowOpen);
+          btn.setAttribute("aria-expanded", String(nowOpen));
+          btn.setAttribute("aria-label", nowOpen ? "Close menu" : "Open menu");
+        };
+
+        btn.addEventListener("click", toggleMenu);
+
+        // Close when clicking a link
+        nav.addEventListener("click", (e) => {
+          if (e.target instanceof HTMLElement && e.target.tagName === "A") {
+            closeMenu();
+          }
+        });
+
+        // Close on Escape
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeMenu();
+        });
+
+        // Close when clicking outside
+        document.addEventListener(
+          "click",
+          (e) => {
+            if (!nav.classList.contains("open")) return;
+            const target = e.target;
+            if (
+              target instanceof Node &&
+              !nav.contains(target) &&
+              !btn.contains(target)
+            ) {
+              closeMenu();
+            }
+          },
+          { capture: true }
+        );
+      })();
     </script>
   </body>
 </html>
