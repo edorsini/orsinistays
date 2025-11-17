@@ -344,6 +344,99 @@
           gap: 8px;
         }
       }
+
+      /* Local guide visuals */
+      .local-card {
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .local-grid {
+        display: grid;
+        gap: 16px;
+      }
+      @media (min-width: 900px) {
+        .local-grid.cols-2 {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .local-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .place {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 12px;
+        border-radius: 12px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.01),
+          transparent
+        );
+        border: 1px solid rgba(255, 255, 255, 0.02);
+      }
+
+      .place .icon {
+        min-width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.02);
+        color: var(--text);
+      }
+
+      .place .meta {
+        flex: 1;
+      }
+
+      .place h4 {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+
+      .place p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      /* Compact heading row with optional filter buttons */
+      .local-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .local-filters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .filter-btn {
+        font-size: 13px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid #334155;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+      }
+      .filter-btn[aria-pressed="true"] {
+        color: var(--text);
+        background: rgba(56, 189, 248, 0.08);
+        border-color: rgba(56, 189, 248, 0.18);
+      }
     </style>
   </head>
   <body>
@@ -624,133 +717,264 @@
         </div>
       </section>
 
-      <section class="section">
-        <h2>Local guide highlights</h2>
-        <div class="grid cols-2">
-          <div class="card" style="padding: 16px">
-            <h3 style="margin-top: 0">Eat, Drink, Explore</h3>
-            <ul class="muted">
-              <li>
-                <strong>Galerías Puntacana</strong> — shopping mall in the
-                Village, with clothing shops, restaurants, and local stores.
-              </li>
-              <li>
-                <strong>Supermercado Nacional</strong> - a well-stocked grocery
-                store in BlueMall Puntacana, offering everything from fresh
-                produce and meats to wine, baked goods, and household essentials
-                — perfect for convenient shopping during your stay.
-              </li>
+      <section class="section" aria-labelledby="local-guide-heading">
+        <h2 id="local-guide-heading">Local guide highlights</h2>
 
-              <li>
-                <strong>Cervecería Punta Cana</strong> — a fun option for craft
-                beer & casual food in Puntacana Village.
-              </li>
-              <li>
-                <strong>Blue Mall</strong> — a modern shopping and dining
-                complex just minutes from the airport, featuring international
-                brands, local boutiques, restaurants, and entertainment options.
-              </li>
-              <li>
-                <strong>Ojos Indígenas Ecological Reserve</strong> — a serene
-                nature park with walking trails leading to crystal-clear
-                freshwater lagoons where visitors can swim and enjoy the
-                tropical forest.
-              </li>
-              <li>
-                <strong>Coco Bongo</strong> - is a high-energy nightclub and
-                show venue, famous for its live performances, acrobatics, music,
-                and nonstop entertainment that make for an unforgettable night
-                out.
-              </li>
-              <li>
-                <strong>Bavaro Adventure Park</strong> - an outdoor eco-park
-                offering thrilling activities like ziplining, dune buggies,
-                horseback riding, and water attractions, all set within 110
-                acres of natural landscapes just minutes from Punta Cana.
-              </li>
-              <li>
-                <strong>Cap Cana Marina</strong> - a world-class marina
-                surrounded by luxury shops and restaurants, offering sport
-                fishing, yacht charters, and a lively waterfront atmosphere in
-                the heart of Cap Cana.
-              </li>
-              <li>
-                <strong>El Dorado</strong> - a family-friendly attraction in Cap
-                Cana featuring water slides, pools, and play areas, making it a
-                fun spot for both kids and adults to cool off and enjoy the day.
-              </li>
-              <li>
-                <strong>Imagine Cave</strong> - a unique nightclub set inside a
-                series of natural caves, where guests dance to live DJs amid
-                dramatic stalactites and underground chambers for an
-                unforgettable Punta Cana nightlife experience.
-              </li>
-              <li>
-                <strong>Scape Park</strong> - is an eco-adventure park in Cap
-                Cana offering zip lines, cave exploration, cenote swimming,
-                cultural exhibits, and its famous turquoise-blue sinkhole, Hoyo
-                Azul.
-              </li>
-            </ul>
+        <div class="grid cols-2">
+          <!-- Eat, Drink, Explore -->
+          <div class="card local-card" aria-labelledby="eat-drink-heading">
+            <div class="local-header">
+              <h3 id="eat-drink-heading" style="margin: 0">
+                🍽️ Eat, Drink & Explore
+              </h3>
+              <div
+                class="local-filters"
+                role="toolbar"
+                aria-label="Filter places"
+              >
+                <!-- Optional small filter buttons — non-functional without JS -->
+                <button class="filter-btn" aria-pressed="false">All</button>
+                <button class="filter-btn" aria-pressed="false">Food</button>
+                <button class="filter-btn" aria-pressed="false">
+                  Shopping
+                </button>
+                <button class="filter-btn" aria-pressed="false">Nature</button>
+              </div>
+            </div>
+
+            <div class="local-list" role="list">
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🛍️</div>
+                <div class="meta">
+                  <h4>Galerías Puntacana</h4>
+                  <p>
+                    Shopping mall in The Village with boutiques, restaurants,
+                    and local stores.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🛒</div>
+                <div class="meta">
+                  <h4>Supermercado Nacional</h4>
+                  <p>
+                    Well-stocked grocery in BlueMall Puntacana — produce, meat,
+                    wine, bakery & essentials.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🍺</div>
+                <div class="meta">
+                  <h4>Cervecería Punta Cana</h4>
+                  <p>
+                    Craft beer and casual bites in Puntacana Village — good for
+                    relaxed evenings.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🛍️</div>
+                <div class="meta">
+                  <h4>Blue Mall</h4>
+                  <p>
+                    Modern shopping & dining complex near the airport with
+                    international brands and local boutiques.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🌿</div>
+                <div class="meta">
+                  <h4>Ojos Indígenas Ecological Reserve</h4>
+                  <p>
+                    Nature park with trails and crystal-clear freshwater lagoons
+                    — swim and explore the forest.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🎭</div>
+                <div class="meta">
+                  <h4>Coco Bongo</h4>
+                  <p>
+                    High-energy show venue: live performances, acrobatics and
+                    nonstop entertainment.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🎢</div>
+                <div class="meta">
+                  <h4>Bávaro Adventure Park</h4>
+                  <p>
+                    Eco-park with ziplining, dune buggies, horseback riding and
+                    water attractions across 110 acres.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">⚓</div>
+                <div class="meta">
+                  <h4>Cap Cana Marina</h4>
+                  <p>
+                    World-class marina with shops, restaurants, sport fishing
+                    and yacht charters.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">💦</div>
+                <div class="meta">
+                  <h4>El Dorado Water Park</h4>
+                  <p>
+                    Family-friendly water park in Cap Cana with slides, pools
+                    and play areas.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🕳️</div>
+                <div class="meta">
+                  <h4>Imagine Cave</h4>
+                  <p>
+                    Nightclub inside natural caves — unique atmosphere with live
+                    DJs and dramatic chambers.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🧭</div>
+                <div class="meta">
+                  <h4>Scape Park</h4>
+                  <p>
+                    Eco-adventure park in Cap Cana — zip lines, caves, cenote
+                    swimming and the turquoise Hoyo Azul.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="card" style="padding: 16px">
-            <h3 style="margin-top: 0">Beaches</h3>
-            <ul class="muted">
-              <li>
-                <strong>Playa Blanca</strong> - a beautiful white-sand beach
-                with calm turquoise waters, beachfront dining, and a relaxed
-                atmosphere perfect for swimming, lounging, and enjoying
-                Caribbean views.
-              </li>
-              <li>
-                <strong>API Beach</strong> - is a relaxed beachfront club at Cap
-                Cana Marina, known for its calm waters, fresh seafood
-                restaurant, and laid-back vibe—perfect for swimming, sunbathing,
-                and enjoying sunsets by the sea.
-              </li>
-              <li>
-                <strong>Uvero Alto</strong> - is a quieter stretch of beach
-                north of Punta Cana, known for its golden sand, rolling waves,
-                and a mix of luxury resorts and secluded spots—ideal for those
-                seeking a more tranquil Caribbean experience.
-              </li>
-              <li>
-                <strong>Macao Beach</strong> - is one of Punta Cana's most
-                famous public beaches, celebrated for its wide sandy shoreline,
-                lively local food shacks, and great waves that make it a popular
-                spot for surfing and excursions.
-              </li>
-              <li>
-                <strong>Arena Gorda</strong> - is a long, wide beach in Punta
-                Cana with soft white sand and calm turquoise waters, popular for
-                swimming, sunbathing, and its proximity to many all-inclusive
-                resorts.
-              </li>
-              <li>
-                <strong>Juanillo Beach</strong> - is a pristine stretch of white
-                sand in Cap Cana, offering calm turquoise waters, swaying palm
-                trees, and beachfront restaurants—perfect for a relaxing,
-                upscale Caribbean beach day.
-              </li>
-              <li>
-                <strong>Cabeza de Toro Beach</strong> - is a picturesque spot
-                lined with palm trees and calm waters, known for snorkeling,
-                fishing excursions, and its mix of lively beach clubs and
-                peaceful natural areas.
-              </li>
-              <li>
-                <strong>El Cortecito</strong> - is a vibrant local beach in
-                Bávaro, lined with colorful shops, beachfront bars, and casual
-                restaurants, offering an authentic Dominican vibe alongside sun
-                and sand.
-              </li>
-              <li>
-                <strong>Playa Bavaro</strong> - is Punta Cana's most iconic
-                beach, stretching for miles with powdery white sand, turquoise
-                waters, and a lively mix of resorts, beach clubs, water sports,
-                and local vendors.
-              </li>
-            </ul>
+
+          <!-- Beaches -->
+          <div class="card local-card" aria-labelledby="beaches-heading">
+            <div class="local-header">
+              <h3 id="beaches-heading" style="margin: 0">🏖️ Beaches</h3>
+              <div style="color: var(--muted); font-size: 13px">
+                Best beaches near our stays
+              </div>
+            </div>
+
+            <div class="local-list" role="list">
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🏝️</div>
+                <div class="meta">
+                  <h4>Playa Blanca</h4>
+                  <p>
+                    White sand, calm turquoise waters and beachfront dining —
+                    great for swimming and relaxing.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🌅</div>
+                <div class="meta">
+                  <h4>API Beach</h4>
+                  <p>
+                    Relaxed beach club at Cap Cana Marina — calm waters, seafood
+                    and sunset vibes.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🌊</div>
+                <div class="meta">
+                  <h4>Uvero Alto</h4>
+                  <p>
+                    Quieter stretch north of Punta Cana with golden sand and a
+                    more tranquil feel.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🏄</div>
+                <div class="meta">
+                  <h4>Macao Beach</h4>
+                  <p>
+                    Famous public beach with wide sands, local food shacks and
+                    surfable waves.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🌴</div>
+                <div class="meta">
+                  <h4>Arena Gorda</h4>
+                  <p>
+                    Long, wide beach popular for swimming and close to many
+                    all-inclusive resorts.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🍹</div>
+                <div class="meta">
+                  <h4>Juanillo Beach</h4>
+                  <p>
+                    Pristine white sand in Cap Cana with calm waters and
+                    beachfront restaurants.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🐠</div>
+                <div class="meta">
+                  <h4>Cabeza de Toro Beach</h4>
+                  <p>
+                    Palm-lined and picturesque — great snorkeling and fishing
+                    excursions.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">🏖️</div>
+                <div class="meta">
+                  <h4>El Cortecito</h4>
+                  <p>
+                    Vibrant local beach in Bávaro with colorful shops, bars and
+                    casual restaurants.
+                  </p>
+                </div>
+              </div>
+
+              <div class="place" role="listitem">
+                <div class="icon" aria-hidden="true">⭐</div>
+                <div class="meta">
+                  <h4>Playa Bávaro</h4>
+                  <p>
+                    The iconic Punta Cana beach — miles of white sand, turquoise
+                    water and lively beach life.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
