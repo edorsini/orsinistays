@@ -437,6 +437,116 @@
         background: rgba(56, 189, 248, 0.08);
         border-color: rgba(56, 189, 248, 0.18);
       }
+
+      /* --- compare styles --- */
+      .compare-wrap {
+        padding: 16px;
+      }
+
+      /* table styles (desktop) */
+      .compare-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+        overflow: hidden;
+      }
+      .compare-table thead th {
+        text-align: left;
+        padding: 12px;
+        font-weight: 700;
+        border-bottom: 1px solid #1f2937;
+      }
+      .compare-table tbody td {
+        padding: 12px;
+        border-bottom: 1px solid #131824;
+        vertical-align: middle;
+        color: var(--text);
+      }
+      .compare-table tr:nth-child(even) td {
+        background: rgba(255, 255, 255, 0.01);
+      }
+
+      /* small visual helpers */
+      .badge-yes {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-weight: 700;
+        color: var(--accent);
+        background: rgba(56, 189, 248, 0.12);
+        border: 1px solid rgba(56, 189, 248, 0.18);
+      }
+      .badge-no {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      /* highlight differences subtly */
+      .compare-table tbody tr[data-diff="true"] td {
+        background: linear-gradient(
+          90deg,
+          rgba(167, 139, 250, 0.02),
+          transparent
+        );
+      }
+
+      /* mobile card view — hidden on wide screens */
+      .compare-cards {
+        display: none;
+        gap: 14px;
+      }
+      .property-card {
+        padding: 14px;
+        border-radius: 14px;
+        border: 1px solid #1f2937;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.01),
+          transparent
+        );
+      }
+      .property-card h4 {
+        margin: 0 0 8px;
+        font-size: 16px;
+      }
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 8px;
+      }
+      .feature-list li {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 8px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.01);
+        align-items: center;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .feature-list li .label {
+        color: var(--muted);
+      }
+      .feature-list li .value {
+        color: var(--text);
+        font-weight: 700;
+        text-align: right;
+      }
+
+      /* responsive switch: show cards on narrow screens, table on wide */
+      @media (max-width: 720px) {
+        .compare-table-wrapper {
+          display: none;
+        }
+        .compare-cards {
+          display: grid;
+        }
+      }
     </style>
   </head>
   <body>
@@ -601,11 +711,20 @@
         </div>
       </section>
 
-      <section id="compare" class="section">
-        <h2>Compare at a glance</h2>
-        <div class="card" style="padding: 16px">
-          <div style="overflow-x: auto">
-            <table>
+      <section id="compare" class="section" aria-labelledby="compare-heading">
+        <h2 id="compare-heading">Compare at a glance</h2>
+
+        <div class="card compare-wrap" style="padding: 16px">
+          <!-- Desktop table (visible on wider screens) -->
+          <div class="compare-table-wrapper" style="overflow-x: auto">
+            <table class="compare-table" aria-describedby="compare-desc">
+              <caption
+                id="compare-desc"
+                class="muted"
+                style="caption-side: bottom; text-align: left; padding-top: 8px"
+              >
+                Quick features and practical details for each property.
+              </caption>
               <thead>
                 <tr>
                   <th>Feature</th>
@@ -619,64 +738,84 @@
                   <td>4</td>
                   <td>2</td>
                 </tr>
+
                 <tr>
                   <td>Bedrooms</td>
                   <td>2</td>
                   <td>1</td>
                 </tr>
+
                 <tr>
                   <td>Beds</td>
-                  <td>1 King & 1 Queen</td>
+                  <td>1 King &amp; 1 Queen</td>
                   <td>1 King</td>
                 </tr>
+
                 <tr>
                   <td>Bathrooms</td>
                   <td>2</td>
                   <td>1</td>
                 </tr>
-                <tr>
+
+                <tr data-diff="true">
                   <td>Parking</td>
-                  <td>2 parking spaces</td>
-                  <td>1 parking space underground</td>
+                  <td>2 spaces</td>
+                  <td>1 (underground)</td>
                 </tr>
-                <tr>
+
+                <tr data-diff="true">
                   <td>Elevator</td>
-                  <td>No</td>
-                  <td>Yes</td>
+                  <td><span class="badge-no">No</span></td>
+                  <td><span class="badge-yes">Yes</span></td>
                 </tr>
+
                 <tr>
                   <td>Floor</td>
-                  <td>2nd Floor</td>
-                  <td>2nd Floor</td>
+                  <td>2nd</td>
+                  <td>2nd</td>
                 </tr>
 
                 <tr>
                   <td>Distance to beach</td>
-                  <td>7 minutes to Playa Blanca</td>
-                  <td>8 minutes to Juanillo Beach</td>
+                  <td>~7 minutes → Playa Blanca</td>
+                  <td>~8 minutes → Juanillo</td>
                 </tr>
-                <tr>
+
+                <tr data-diff="true">
                   <td>Workspace</td>
-                  <td>Yes</td>
-                  <td>No</td>
+                  <td><span class="badge-yes">Yes</span></td>
+                  <td><span class="badge-no">No</span></td>
                 </tr>
+
                 <tr>
                   <td>Kitchen</td>
-                  <td>Yes</td>
-                  <td>Yes</td>
+                  <td><span class="badge-yes">Yes</span></td>
+                  <td><span class="badge-yes">Yes</span></td>
                 </tr>
+
                 <tr>
                   <td>Outdoor space</td>
-                  <td>Yes, balcony with pool view!</td>
-                  <td>Yes, balcony with pool view!</td>
+                  <td>Balcony with pool view</td>
+                  <td>Balcony with pool view</td>
                 </tr>
-                <tr>
+
+                <tr data-diff="true">
                   <td>Airport (PUJ)</td>
-                  <td>5 minutes away</td>
-                  <td>17 minutes away</td>
+                  <td>~5 minutes</td>
+                  <td>~17 minutes</td>
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <!-- Mobile card view (auto-populated from table via JS) -->
+          <div
+            class="compare-cards"
+            aria-hidden="false"
+            id="compare-cards"
+            aria-label="Compare cards for mobile"
+          >
+            <!-- JS will populate two .property-card nodes here on small screens -->
           </div>
         </div>
       </section>
@@ -1102,6 +1241,72 @@
           },
           { capture: true }
         );
+      })();
+    </script>
+
+    <script>
+      (function () {
+        // Build mobile cards from the table so content stays in one place.
+        const table = document.querySelector(".compare-table");
+        const cardsContainer = document.getElementById("compare-cards");
+        if (!table || !cardsContainer) return;
+
+        function buildCards() {
+          // Clear previous
+          cardsContainer.innerHTML = "";
+
+          const headers = Array.from(table.tHead.querySelectorAll("th"))
+            .slice(1)
+            .map((h) => h.textContent.trim());
+
+          // create a card for each property (header index 1..N)
+          const propertyCards = headers.map((title) => {
+            const card = document.createElement("div");
+            card.className = "property-card";
+            const h = document.createElement("h4");
+            h.textContent = title;
+            card.appendChild(h);
+            const list = document.createElement("ul");
+            list.className = "feature-list";
+            card.appendChild(list);
+            return { card, list };
+          });
+
+          // Iterate table rows and append features to each property card
+          const rows = Array.from(table.tBodies[0].rows);
+          rows.forEach((row) => {
+            const feature = row.cells[0].textContent.trim();
+            // for each property column
+            for (let i = 1; i < row.cells.length; i++) {
+              const raw = row.cells[i].innerHTML.trim();
+              const item = document.createElement("li");
+              const label = document.createElement("div");
+              label.className = "label";
+              label.textContent = feature;
+              const value = document.createElement("div");
+              value.className = "value";
+              // Keep simple text, but preserve simple badges if present
+              // Strip out any wrapping tags except inline text
+              value.innerHTML = raw;
+              item.appendChild(label);
+              item.appendChild(value);
+              propertyCards[i - 1].list.appendChild(item);
+            }
+          });
+
+          // append cards
+          propertyCards.forEach((p) => cardsContainer.appendChild(p.card));
+        }
+
+        // Build once now; on small screens the CSS will toggle visibility
+        buildCards();
+
+        // Also rebuild on window resize (in case table content/headers change)
+        let resizeTimer;
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(buildCards, 250);
+        });
       })();
     </script>
   </body>
