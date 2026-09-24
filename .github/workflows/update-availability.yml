@@ -1,0 +1,44 @@
+name: Update Airbnb availability
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-airbnb-availability
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch Airbnb calendars
+        env:
+          AIRBNB_DREAMCATCHER_ICAL_URL: ${{ secrets.AIRBNB_DREAMCATCHER_ICAL_URL }}
+          AIRBNB_HAPPY_PLACE_ICAL_URL: ${{ secrets.AIRBNB_HAPPY_PLACE_ICAL_URL }}
+        run: node scripts/update-availability.mjs
+
+      - name: Publish availability changes
+        run: |
+          if git diff --quiet -- availability.json availability.js; then
+            echo "Availability has not changed."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add availability.json availability.js
+          git commit -m "Update Airbnb availability"
+          git push

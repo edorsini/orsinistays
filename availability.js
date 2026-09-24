@@ -1,0 +1,33 @@
+window.ORSINI_AVAILABILITY = {
+  "version": 1,
+  "properties": {
+    "dreamcatcher": {
+      "unavailable": [
+        {
+          "start": "2026-09-20",
+          "end": "2026-10-12"
+        },
+        {
+          "start": "2027-09-23",
+          "end": "2027-09-24"
+        }
+      ]
+    },
+    "happy-place": {
+      "unavailable": [
+        {
+          "start": "2026-10-23",
+          "end": "2026-10-26"
+        },
+        {
+          "start": "2027-01-02",
+          "end": "2027-01-09"
+        },
+        {
+          "start": "2027-09-23",
+          "end": "2027-09-24"
+        }
+      ]
+    }
+  }
+};

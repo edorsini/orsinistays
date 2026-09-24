@@ -227,6 +227,163 @@
         display: flex;
         gap: 10px;
       }
+      .availability {
+        margin-top: 20px;
+        padding-top: 18px;
+        border-top: 1px solid #1f2937;
+      }
+      .availability-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .availability-title {
+        margin: 0 0 4px;
+        font-size: 18px;
+      }
+      .availability-subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .calendar-nav {
+        display: grid;
+        grid-template-columns: 36px minmax(118px, auto) 36px;
+        align-items: center;
+        gap: 4px;
+      }
+      .calendar-nav button {
+        width: 36px;
+        height: 36px;
+        border: 1px solid #334155;
+        border-radius: 10px;
+        background: #0b1220;
+        color: var(--text);
+        cursor: pointer;
+        font-size: 20px;
+        line-height: 1;
+      }
+      .calendar-nav button:hover:not(:disabled) {
+        border-color: var(--accent);
+      }
+      .calendar-nav button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      .calendar-nav button:disabled {
+        cursor: not-allowed;
+        opacity: 0.35;
+      }
+      .calendar-month {
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 700;
+        text-align: center;
+      }
+      .availability-calendar {
+        min-height: 252px;
+      }
+      .availability-grid {
+        width: 100%;
+        table-layout: fixed;
+        border: 0;
+        border-collapse: separate;
+        border-spacing: 4px;
+      }
+      .availability-grid th,
+      .availability-grid td {
+        height: 32px;
+        padding: 0;
+        border: 0;
+        text-align: center;
+      }
+      .availability-grid th {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .availability-grid tr:nth-child(even),
+      .availability-grid tr:nth-child(even) td {
+        background: transparent;
+      }
+      .calendar-day {
+        display: inline-flex;
+        width: 32px;
+        height: 32px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        border-radius: 9px;
+        font-size: 13px;
+        font-weight: 650;
+      }
+      .calendar-day.available {
+        background: rgba(56, 189, 248, 0.14);
+        border-color: rgba(56, 189, 248, 0.24);
+        color: #bae6fd;
+      }
+      .calendar-day.unavailable {
+        background: rgba(148, 163, 184, 0.1);
+        color: #64748b;
+        text-decoration: line-through;
+      }
+      .calendar-day.past {
+        color: #475569;
+      }
+      .calendar-day.today {
+        border-color: var(--accent-2);
+      }
+      .calendar-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .legend-swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+      }
+      .legend-swatch.available {
+        background: rgba(56, 189, 248, 0.45);
+      }
+      .legend-swatch.unavailable {
+        background: rgba(148, 163, 184, 0.3);
+      }
+      .availability-note,
+      .calendar-status {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+      .calendar-status {
+        display: grid;
+        min-height: 220px;
+        place-items: center;
+        text-align: center;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
       .section {
         padding: 40px 0;
       }
@@ -352,6 +509,13 @@
         /* keep header layout tidy on mobile: stack brand + button */
         header {
           gap: 8px;
+        }
+        .availability-header {
+          align-items: stretch;
+          flex-direction: column;
+        }
+        .calendar-nav {
+          grid-template-columns: 36px 1fr 36px;
         }
       }
 
@@ -669,6 +833,57 @@
                 >
                 <a class="btn secondary" href="#compare">Compare</a>
               </div>
+              <section
+                class="availability"
+                data-property="dreamcatcher"
+                aria-labelledby="dreamcatcher-availability-title"
+              >
+                <div class="availability-header">
+                  <div>
+                    <h4
+                      class="availability-title"
+                      id="dreamcatcher-availability-title"
+                    >
+                      Check availability
+                    </h4>
+                    <p class="availability-subtitle">Synced from Airbnb</p>
+                  </div>
+                  <div class="calendar-nav">
+                    <button
+                      type="button"
+                      data-calendar-action="previous"
+                      aria-label="Show previous month"
+                    >
+                      ‹
+                    </button>
+                    <span class="calendar-month" aria-live="polite"></span>
+                    <button
+                      type="button"
+                      data-calendar-action="next"
+                      aria-label="Show next month"
+                    >
+                      ›
+                    </button>
+                  </div>
+                </div>
+                <div class="availability-calendar" aria-live="polite">
+                  <p class="calendar-status">Loading availability…</p>
+                </div>
+                <div class="calendar-legend" aria-hidden="true">
+                  <span class="legend-item"
+                    ><span class="legend-swatch available"></span
+                    >Available</span
+                  >
+                  <span class="legend-item"
+                    ><span class="legend-swatch unavailable"></span
+                    >Unavailable</span
+                  >
+                </div>
+                <p class="availability-note">
+                  Availability is informational and may take time to update.
+                  Confirm your dates on the listing before booking.
+                </p>
+              </section>
             </div>
           </article>
 
@@ -718,6 +933,57 @@
                 >
                 <a class="btn secondary" href="#compare">Compare</a>
               </div>
+              <section
+                class="availability"
+                data-property="happy-place"
+                aria-labelledby="happy-place-availability-title"
+              >
+                <div class="availability-header">
+                  <div>
+                    <h4
+                      class="availability-title"
+                      id="happy-place-availability-title"
+                    >
+                      Check availability
+                    </h4>
+                    <p class="availability-subtitle">Synced from Airbnb</p>
+                  </div>
+                  <div class="calendar-nav">
+                    <button
+                      type="button"
+                      data-calendar-action="previous"
+                      aria-label="Show previous month"
+                    >
+                      ‹
+                    </button>
+                    <span class="calendar-month" aria-live="polite"></span>
+                    <button
+                      type="button"
+                      data-calendar-action="next"
+                      aria-label="Show next month"
+                    >
+                      ›
+                    </button>
+                  </div>
+                </div>
+                <div class="availability-calendar" aria-live="polite">
+                  <p class="calendar-status">Loading availability…</p>
+                </div>
+                <div class="calendar-legend" aria-hidden="true">
+                  <span class="legend-item"
+                    ><span class="legend-swatch available"></span
+                    >Available</span
+                  >
+                  <span class="legend-item"
+                    ><span class="legend-swatch unavailable"></span
+                    >Unavailable</span
+                  >
+                </div>
+                <p class="availability-note">
+                  Availability is informational and may take time to update.
+                  Confirm your dates on the listing before booking.
+                </p>
+              </section>
             </div>
           </article>
         </div>
@@ -1201,6 +1467,220 @@
     </div>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <script src="availability.js"></script>
+    <script>
+      (function () {
+        const widgets = Array.from(document.querySelectorAll(".availability"));
+        if (!widgets.length) return;
+
+        const now = new Date();
+        const firstMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+        const lastMonth = new Date(now.getFullYear(), now.getMonth() + 12, 1);
+        const todayKey = dateKey(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate(),
+        );
+        const monthFormatter = new Intl.DateTimeFormat("en-US", {
+          month: "long",
+          year: "numeric",
+        });
+        const dayFormatter = new Intl.DateTimeFormat("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        });
+        const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        function dateKey(year, monthIndex, day) {
+          return [
+            String(year).padStart(4, "0"),
+            String(monthIndex + 1).padStart(2, "0"),
+            String(day).padStart(2, "0"),
+          ].join("-");
+        }
+
+        function monthNumber(date) {
+          return date.getFullYear() * 12 + date.getMonth();
+        }
+
+        function isUnavailable(key, ranges) {
+          return ranges.some((range) => key >= range.start && key < range.end);
+        }
+
+        function updateNavigation(widget) {
+          const state = widget.calendarState;
+          const label = widget.querySelector(".calendar-month");
+          const previous = widget.querySelector(
+            '[data-calendar-action="previous"]',
+          );
+          const next = widget.querySelector('[data-calendar-action="next"]');
+
+          label.textContent = monthFormatter.format(state.month);
+          previous.disabled =
+            !state.ranges || monthNumber(state.month) <= monthNumber(firstMonth);
+          next.disabled =
+            !state.ranges || monthNumber(state.month) >= monthNumber(lastMonth);
+        }
+
+        function renderCalendar(widget) {
+          const state = widget.calendarState;
+          const calendar = widget.querySelector(".availability-calendar");
+          const year = state.month.getFullYear();
+          const month = state.month.getMonth();
+          const daysInMonth = new Date(year, month + 1, 0).getDate();
+          const firstDayOffset = new Date(year, month, 1).getDay();
+
+          updateNavigation(widget);
+          calendar.innerHTML = "";
+
+          const table = document.createElement("table");
+          table.className = "availability-grid";
+
+          const caption = document.createElement("caption");
+          caption.className = "sr-only";
+          caption.textContent = `${monthFormatter.format(state.month)} availability`;
+          table.appendChild(caption);
+
+          const head = document.createElement("thead");
+          const headRow = document.createElement("tr");
+          weekdays.forEach((weekday) => {
+            const heading = document.createElement("th");
+            heading.scope = "col";
+            heading.textContent = weekday;
+            headRow.appendChild(heading);
+          });
+          head.appendChild(headRow);
+          table.appendChild(head);
+
+          const body = document.createElement("tbody");
+          for (let week = 0; week < 6; week += 1) {
+            const row = document.createElement("tr");
+            for (let weekday = 0; weekday < 7; weekday += 1) {
+              const cell = document.createElement("td");
+              const day = week * 7 + weekday - firstDayOffset + 1;
+
+              if (day >= 1 && day <= daysInMonth) {
+                const key = dateKey(year, month, day);
+                const date = new Date(year, month, day);
+                const dayElement = document.createElement("time");
+                let status;
+
+                dayElement.className = "calendar-day";
+                dayElement.dateTime = key;
+                dayElement.textContent = String(day);
+
+                if (key < todayKey) {
+                  status = "past";
+                } else if (isUnavailable(key, state.ranges)) {
+                  status = "unavailable";
+                } else {
+                  status = "available";
+                }
+
+                dayElement.classList.add(status);
+                if (key === todayKey) dayElement.classList.add("today");
+                dayElement.setAttribute(
+                  "aria-label",
+                  `${dayFormatter.format(date)}, ${status}`,
+                );
+                dayElement.title = `${dayFormatter.format(date)} — ${status}`;
+                cell.appendChild(dayElement);
+              }
+
+              row.appendChild(cell);
+            }
+            body.appendChild(row);
+          }
+          table.appendChild(body);
+          calendar.appendChild(table);
+        }
+
+        function normalizeRanges(value) {
+          if (!Array.isArray(value)) return null;
+
+          const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+          const ranges = value.filter(
+            (range) =>
+              range &&
+              datePattern.test(range.start) &&
+              datePattern.test(range.end) &&
+              range.start < range.end,
+          );
+
+          return ranges.length === value.length ? ranges : null;
+        }
+
+        widgets.forEach((widget) => {
+          widget.calendarState = {
+            month: new Date(firstMonth),
+            ranges: null,
+          };
+          updateNavigation(widget);
+
+          widget.addEventListener("click", (event) => {
+            const button = event.target.closest("[data-calendar-action]");
+            if (!button || button.disabled) return;
+
+            const offset =
+              button.dataset.calendarAction === "next" ? 1 : -1;
+            const current = widget.calendarState.month;
+            widget.calendarState.month = new Date(
+              current.getFullYear(),
+              current.getMonth() + offset,
+              1,
+            );
+            renderCalendar(widget);
+          });
+        });
+
+        const productionHosts = new Set([
+          "orsinistays.com",
+          "www.orsinistays.com",
+        ]);
+        const availabilityUrl = productionHosts.has(window.location.hostname)
+          ? "https://raw.githubusercontent.com/edorsini/orsinistays/main/availability.json"
+          : "availability.json";
+
+        function applyAvailability(data) {
+          widgets.forEach((widget) => {
+            const property = data?.properties?.[widget.dataset.property];
+            const ranges = normalizeRanges(property?.unavailable);
+            if (!ranges) throw new Error("Availability data is invalid");
+
+            widget.calendarState.ranges = ranges;
+            renderCalendar(widget);
+          });
+        }
+
+        function showAvailabilityError() {
+          widgets.forEach((widget) => {
+            const calendar = widget.querySelector(".availability-calendar");
+            calendar.innerHTML =
+              '<p class="calendar-status">Availability is temporarily unavailable. Please check the listing for current dates.</p>';
+            updateNavigation(widget);
+          });
+        }
+
+        if (window.location.protocol === "file:") {
+          try {
+            applyAvailability(window.ORSINI_AVAILABILITY);
+          } catch {
+            showAvailabilityError();
+          }
+          return;
+        }
+
+        fetch(availabilityUrl, { cache: "no-store" })
+          .then((response) => {
+            if (!response.ok) throw new Error("Availability request failed");
+            return response.json();
+          })
+          .then(applyAvailability)
+          .catch(showAvailabilityError);
+      })();
     </script>
 
     <script>
