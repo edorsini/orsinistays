@@ -846,7 +846,6 @@
                     >
                       Check availability
                     </h4>
-                    <p class="availability-subtitle">Synced from Airbnb</p>
                   </div>
                   <div class="calendar-nav">
                     <button
@@ -946,7 +945,6 @@
                     >
                       Check availability
                     </h4>
-                    <p class="availability-subtitle">Synced from Airbnb</p>
                   </div>
                   <div class="calendar-nav">
                     <button
@@ -1520,7 +1518,8 @@
 
           label.textContent = monthFormatter.format(state.month);
           previous.disabled =
-            !state.ranges || monthNumber(state.month) <= monthNumber(firstMonth);
+            !state.ranges ||
+            monthNumber(state.month) <= monthNumber(firstMonth);
           next.disabled =
             !state.ranges || monthNumber(state.month) >= monthNumber(lastMonth);
         }
@@ -1624,8 +1623,7 @@
             const button = event.target.closest("[data-calendar-action]");
             if (!button || button.disabled) return;
 
-            const offset =
-              button.dataset.calendarAction === "next" ? 1 : -1;
+            const offset = button.dataset.calendarAction === "next" ? 1 : -1;
             const current = widget.calendarState.month;
             widget.calendarState.month = new Date(
               current.getFullYear(),
