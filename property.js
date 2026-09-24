@@ -212,7 +212,7 @@
   function showAvailabilityError() {
     widgets.forEach((widget) => {
       widget.querySelector(".availability-calendar").innerHTML =
-        '<p class="calendar-status">Availability is temporarily unavailable. Please check Airbnb for current dates.</p>';
+        '<p class="calendar-status">Availability is temporarily unavailable. Please email us to confirm your dates.</p>';
       updateNavigation(widget);
     });
   }

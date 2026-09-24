@@ -30,7 +30,7 @@
     />
     <meta
       property="og:description"
-      content="Two boutique stays. Compare amenities and book securely."
+      content="Two boutique stays. Compare amenities and email us your preferred dates."
     />
     <meta
       property="og:image"
@@ -51,7 +51,7 @@
     />
     <meta
       name="twitter:description"
-      content="Two boutique stays. Compare amenities and book securely."
+      content="Two boutique stays. Compare amenities and email us your preferred dates."
     />
     <meta
       name="twitter:image"
@@ -60,7 +60,7 @@
 
     <meta
       name="description"
-      content="Two boutique rentals in Punta Cana/Cap Cana: Punta Cana Dreamcatcher and Cap Cana Happy Place. Explore photos, compare, and book securely."
+      content="Two boutique rentals in Punta Cana and Cap Cana. Explore photos, compare amenities, and email Orsini Stays with your preferred dates."
     />
     <meta name="robots" content="index,follow" />
     <meta
@@ -69,7 +69,7 @@
     />
     <meta
       property="og:description"
-      content="Two boutique rentals in Punta Cana Village/Cap Cana: Punta Cana Village Dreamcatcher and Cap Cana Happy Place. Explore photos, compare, and book securely."
+      content="Explore two boutique Punta Cana rentals, compare amenities, and email Orsini Stays with your preferred dates."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/img/cover.jpg" />
@@ -942,8 +942,8 @@
         <h1>Two Punta Cana stays. One easy place to book.</h1>
         <p>
           Welcome! Explore our Punta Cana vacation rentals — Punta Cana Village
-          Dreamcatcher and Cap Cana Happy Place. Browse details and book
-          securely via our official listing links.
+          Dreamcatcher and Cap Cana Happy Place. Browse the details, check the
+          calendars, and email us your preferred dates.
         </p>
         <div class="cta" style="justify-content: center">
           <a class="btn" href="#stays">Explore Stays</a>
@@ -965,7 +965,7 @@
 
               <span
                 class="badge right"
-                aria-label="Airbnb Guest Favorite Top 1%"
+                aria-label="Guest Favorite Top 1%"
                 >🏆 Top 1% of homes</span
               >
             </div>
@@ -1046,7 +1046,7 @@
                 </div>
                 <p class="availability-note">
                   Availability is informational and may take time to update.
-                  Confirm your dates on the listing before booking.
+                  Email us to confirm your dates before making plans.
                 </p>
               </section>
             </div>
@@ -1062,7 +1062,7 @@
               <span class="badge">Sleeps 2</span>
               <span
                 class="badge right"
-                aria-label="Airbnb Guest Favorite Top 1%"
+                aria-label="Guest Favorite Top 1%"
                 >🏆 Top 1% of homes</span
               >
             </div>
@@ -1142,7 +1142,7 @@
                 </div>
                 <p class="availability-note">
                   Availability is informational and may take time to update.
-                  Confirm your dates on the listing before booking.
+                  Email us to confirm your dates before making plans.
                 </p>
               </section>
             </div>
@@ -1563,9 +1563,10 @@
           <details>
             <summary>How do I book?</summary>
             <div style="padding: 10px 4px" class="muted">
-              Click "View Details" for the property you want, then choose
-              "Book on Airbnb." All booking and payment happens securely on
-              Airbnb.
+              Open the property you want and choose "Email your dates."
+              Include your preferred check-in and check-out dates and the
+              number of guests. We’ll reply with availability, rates, and next
+              steps.
             </div>
           </details>
           <details>
@@ -1578,15 +1579,15 @@
           <details>
             <summary>Is early check‑in available?</summary>
             <div style="padding: 10px 4px" class="muted">
-              We’ll try! Message us on Airbnb and we’ll confirm based on
-              cleaning schedule.
+              We’ll try! Email us and we’ll confirm based on the cleaning
+              schedule.
             </div>
           </details>
           <details>
             <summary>Is late check‑out available?</summary>
             <div style="padding: 10px 4px" class="muted">
-              We’ll try! Message us on Airbnb and we’ll confirm based on
-              cleaning schedule.
+              We’ll try! Email us and we’ll confirm based on the cleaning
+              schedule.
             </div>
           </details>
           <details>
@@ -1616,8 +1617,8 @@
                 height="399"
               />
               <h3>Ed & Amanda</h3>
-              <div class="host-badge" aria-label="Airbnb Superhosts">
-                <span aria-hidden="true">◆</span> Superhosts
+              <div class="host-badge" aria-label="Experienced hosts">
+                <span aria-hidden="true">◆</span> Experienced hosts
               </div>
               <div class="about-stats" aria-label="Hosting highlights">
                 <div class="about-stat">
@@ -1696,9 +1697,9 @@
             <div>
               <h3>Questions about Orsini Stays?</h3>
               <p>
-                Email us for general inquiries. For an existing reservation,
-                please message us through Airbnb so it stays connected to your
-                booking.
+                Email us with the property name, your preferred check-in and
+                check-out dates, and the number of guests. We’ll reply with
+                availability, rates, and next steps.
               </p>
             </div>
             <div class="cta">
@@ -1710,10 +1711,8 @@
               >
               <a
                 class="btn secondary"
-                href="https://www.airbnb.com/users/show/275769479"
-                target="_blank"
-                rel="noopener"
-                >Airbnb profile</a
+                href="#stays"
+                >View our stays</a
               >
             </div>
           </div>
@@ -1733,7 +1732,11 @@
           .split("")
           .reverse()
           .join("");
-        contactEmail.href = `mailto:${address}`;
+        const subject = encodeURIComponent("Orsini Stays date inquiry");
+        const body = encodeURIComponent(
+          "Hello Ed and Amanda,\n\nI’m interested in booking an Orsini Stays property.\n\nProperty:\nCheck-in:\nCheck-out:\nNumber of guests:\n\nThank you!",
+        );
+        contactEmail.href = `mailto:${address}?subject=${subject}&body=${body}`;
         contactEmail.setAttribute("aria-label", `Email ${address}`);
       }
     </script>
@@ -1928,7 +1931,7 @@
           widgets.forEach((widget) => {
             const calendar = widget.querySelector(".availability-calendar");
             calendar.innerHTML =
-              '<p class="calendar-status">Availability is temporarily unavailable. Please check the listing for current dates.</p>';
+              '<p class="calendar-status">Availability is temporarily unavailable. Please email us to confirm your dates.</p>';
             updateNavigation(widget);
           });
         }
