@@ -19,60 +19,37 @@
     <link rel="icon" type="image/png" href="favicon.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Orsini Stays — Punta Cana Vacation Rentals</title>
+    <title>
+      Orsini Stays | Thoughtfully Hosted Vacation Rentals in Punta Cana &amp; Cap
+      Cana
+    </title>
 
     <!-- Open Graph (Facebook, Slack, iMessage, WhatsApp, LinkedIn) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.orsinistays.com/" />
     <meta
       property="og:title"
-      content="Orsini Stays — Punta Cana & Cap Cana Rentals"
+      content="Orsini Stays — Thoughtfully Hosted Vacation Rentals"
     />
     <meta
       property="og:description"
-      content="Two boutique stays. Compare amenities and email us your preferred dates."
+      content="Carefully selected, top-rated homes in Punta Cana and Cap Cana—personally managed with fast communication and local recommendations."
     />
-    <meta
-      property="og:image"
-      content="https://www.orsinistays.com/img/share.jpg"
-    />
-    <!-- <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" /> -->
-    <meta
-      property="og:image:alt"
-      content="Punta Cana Dreamcatcher and Cap Cana Happy Place"
-    />
-
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta
       name="twitter:title"
-      content="Orsini Stays — Punta Cana & Cap Cana Rentals"
+      content="Orsini Stays — Thoughtfully Hosted Vacation Rentals"
     />
     <meta
       name="twitter:description"
-      content="Two boutique stays. Compare amenities and email us your preferred dates."
+      content="Carefully selected, top-rated homes in Punta Cana and Cap Cana—personally managed with fast communication and local recommendations."
     />
-    <meta
-      name="twitter:image"
-      content="https://www.orsinistays.com/img/share.jpg"
-    />
-
     <meta
       name="description"
-      content="Two boutique rentals in Punta Cana and Cap Cana. Explore photos, compare amenities, and email Orsini Stays with your preferred dates."
+      content="Thoughtfully hosted vacation rentals in Punta Cana and Cap Cana. Discover carefully selected, top-rated homes personally managed by Ed and Amanda."
     />
     <meta name="robots" content="index,follow" />
-    <meta
-      property="og:title"
-      content="Orsini Stays — Punta Cana Vacation Rentals"
-    />
-    <meta
-      property="og:description"
-      content="Explore two boutique Punta Cana rentals, compare amenities, and email Orsini Stays with your preferred dates."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/img/cover.jpg" />
     <style>
       :root {
         --bg: #0f172a;
@@ -150,18 +127,111 @@
         color: var(--text);
       }
       .hero {
-        padding: 56px 0;
+        padding: 72px 0 56px;
         text-align: center;
       }
+      .hero-kicker,
+      .section-kicker {
+        margin: 0 0 12px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
       .hero h1 {
-        font-size: 40px;
-        line-height: 1.1;
-        margin: 0 0 14px;
+        max-width: 920px;
+        margin: 0 auto 18px;
+        font-size: clamp(40px, 6.5vw, 72px);
+        line-height: 1.02;
+        letter-spacing: -0.045em;
       }
       .hero p {
         color: var(--muted);
         margin: 0 auto 26px;
-        max-width: 660px;
+        max-width: 760px;
+        font-size: 17px;
+        line-height: 1.65;
+      }
+      .hero .hero-proof {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 18px;
+        max-width: 780px;
+        margin: 24px auto 0;
+        color: #cbd5e1;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .hero-proof span {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .hero-proof span::before {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        content: "";
+      }
+      .hosting-promise {
+        padding: clamp(24px, 5vw, 42px);
+        border: 1px solid #263449;
+        border-radius: 24px;
+        background:
+          radial-gradient(
+            circle at 90% 0%,
+            rgba(167, 139, 250, 0.12),
+            transparent 34%
+          ),
+          var(--card);
+      }
+      .promise-heading {
+        max-width: 720px;
+        margin-bottom: 30px;
+      }
+      .promise-heading h2 {
+        margin: 0 0 12px;
+        font-size: clamp(28px, 4vw, 42px);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+      }
+      .promise-heading > p:last-child,
+      .section-intro {
+        max-width: 720px;
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+      .promise-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .promise-item {
+        padding: 18px;
+        border: 1px solid #263449;
+        border-radius: 16px;
+        background: rgba(11, 18, 32, 0.72);
+      }
+      .promise-item strong,
+      .promise-item span {
+        display: block;
+      }
+      .promise-item strong {
+        margin-bottom: 7px;
+        color: var(--text);
+        font-size: 16px;
+      }
+      .promise-item span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .section-heading {
+        margin-bottom: 24px;
       }
       .grid {
         display: grid;
@@ -200,6 +270,10 @@
         border: 1px solid #334155;
         font-size: 12px;
         color: #cbd5e1;
+      }
+      .badge.right {
+        right: 12px;
+        left: auto;
       }
       .card .content {
         padding: 18px;
@@ -680,6 +754,22 @@
           align-items: flex-start;
           flex-direction: column;
         }
+        .promise-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding-top: 50px;
+        }
+        .hero .cta {
+          align-items: stretch;
+          flex-direction: column;
+        }
+      }
+
+      @media (min-width: 721px) and (max-width: 980px) {
+        .promise-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
       }
 
       @media (min-width: 860px) {
@@ -900,6 +990,7 @@
             <span class="logo"
               ><img
                 src="ed-amanda.png"
+                alt=""
                 style="
                   width: 36px;
                   height: 36px;
@@ -930,8 +1021,8 @@
         </button>
 
         <nav id="primary-nav">
-          <a href="#stays">Stays</a>
-          <a href="#compare">Compare</a>
+          <a href="#stays">Homes</a>
+          <a href="#why-us">Why us</a>
           <a href="#location">Location</a>
           <a href="#faq">FAQ</a>
           <a href="#about">About</a>
@@ -939,20 +1030,83 @@
       </header>
 
       <section class="hero">
-        <h1>Two Punta Cana stays. One easy place to book.</h1>
+        <p class="hero-kicker">A more personal way to stay</p>
+        <h1>Thoughtfully hosted vacation rentals in Punta Cana and Cap Cana.</h1>
         <p>
-          Welcome! Explore our Punta Cana vacation rentals — Punta Cana Village
-          Dreamcatcher and Cap Cana Happy Place. Browse the details, check the
-          calendars, and email us your preferred dates.
+          Discover carefully selected, top-rated homes personally managed by Ed
+          &amp; Amanda. Count on fast communication, thoughtful details, and local
+          recommendations that help you enjoy more of your time here.
         </p>
         <div class="cta" style="justify-content: center">
-          <a class="btn" href="#stays">Explore Stays</a>
-          <a class="btn secondary" href="#compare">Compare</a>
+          <a class="btn" href="#stays">Explore our homes</a>
+          <a class="btn secondary" href="#about">Meet your hosts</a>
+        </div>
+        <div class="hero-proof" aria-label="Orsini Stays highlights">
+          <span>Top 1% guest favorites</span>
+          <span>Personally managed</span>
+          <span>English &amp; Spanish</span>
+        </div>
+      </section>
+
+      <section
+        id="why-us"
+        class="section"
+        aria-labelledby="why-us-heading"
+      >
+        <div class="hosting-promise">
+          <div class="promise-heading">
+            <p class="section-kicker">Why Orsini Stays</p>
+            <h2 id="why-us-heading">
+              A smaller collection. A more personal stay.
+            </h2>
+            <p>
+              We choose homes for comfort, character, and location—then manage
+              every stay ourselves. You always know who you’re talking to and
+              who is looking after the details.
+            </p>
+          </div>
+          <div class="promise-grid">
+            <div class="promise-item">
+              <strong>Top-rated homes</strong>
+              <span
+                >Both featured homes rank in the top 1% of eligible listings
+                based on guest ratings and reliability.</span
+              >
+            </div>
+            <div class="promise-item">
+              <strong>Personally managed</strong>
+              <span
+                >Ed &amp; Amanda stay close to every detail, from preparing the
+                home to supporting you during your visit.</span
+              >
+            </div>
+            <div class="promise-item">
+              <strong>Fast, human communication</strong>
+              <span
+                >Questions are answered quickly and thoughtfully by your hosts,
+                not passed through a call center.</span
+              >
+            </div>
+            <div class="promise-item">
+              <strong>Local recommendations</strong>
+              <span
+                >Get our personal picks for beaches, coffee, dining, shopping,
+                and the places we return to ourselves.</span
+              >
+            </div>
+          </div>
         </div>
       </section>
 
       <section id="stays" class="section">
-        <h2>Our Stays</h2>
+        <div class="section-heading">
+          <p class="section-kicker">Our collection</p>
+          <h2>Featured homes, selected with care</h2>
+          <p class="section-intro">
+            Comfortable, well-located spaces with the details that make travel
+            feel easy. Find the setting that fits your stay.
+          </p>
+        </div>
 
         <div class="grid cols-2">
           <!-- Property A -->
@@ -1296,14 +1450,21 @@
       </section>
 
       <section class="section" aria-labelledby="local-guide-heading">
-        <h2 id="local-guide-heading">Local guide highlights</h2>
+        <div class="section-heading">
+          <p class="section-kicker">From your hosts</p>
+          <h2 id="local-guide-heading">Local recommendations worth saving</h2>
+          <p class="section-intro">
+            A head start on the beaches, restaurants, coffee stops, and everyday
+            essentials we recommend to our own friends and family.
+          </p>
+        </div>
 
         <div class="grid cols-2">
           <!-- Eat, Drink, Explore -->
           <div class="card local-card" aria-labelledby="eat-drink-heading">
             <div class="local-header">
               <h3 id="eat-drink-heading" style="margin: 0">
-                🍽️ Eat, Drink & Explore
+                🍽️ Eat, Drink &amp; Explore
               </h3>
               <div
                 class="local-filters"
@@ -1338,7 +1499,7 @@
                   <h4>Supermercado Nacional</h4>
                   <p>
                     Well-stocked grocery in BlueMall Puntacana — produce, meat,
-                    wine, bakery & essentials.
+                    wine, bakery &amp; essentials.
                   </p>
                 </div>
               </div>
@@ -1359,7 +1520,7 @@
                 <div class="meta">
                   <h4>Blue Mall</h4>
                   <p>
-                    Modern shopping & dining complex near the airport with
+                    Modern shopping &amp; dining complex near the airport with
                     international brands and local boutiques.
                   </p>
                 </div>
@@ -1616,7 +1777,7 @@
                 width="600"
                 height="399"
               />
-              <h3>Ed & Amanda</h3>
+              <h3>Ed &amp; Amanda</h3>
               <div class="host-badge" aria-label="Experienced hosts">
                 <span aria-hidden="true">◆</span> Experienced hosts
               </div>
@@ -1637,19 +1798,19 @@
             </aside>
 
             <div class="about-content">
-              <p class="about-eyebrow">Meet your hosts</p>
+              <p class="about-eyebrow">Personally managed</p>
               <h2 class="about-heading" id="about-heading">
-                About Ed & Amanda
+                Hospitality with a name and a face
               </h2>
               <p class="about-story">
                 We’re a couple born in the Dominican Republic and raised
                 between Germany and the United States. We’re the faces behind
-                Orsini Stays—serene, stylish, and comfortable spaces in Punta
-                Cana and Cap Cana. We love traveling and hosting, and believe
-                gracious hospitality lives in the details. Ed brings the
-                technical touch while Amanda adds the thoughtful finishing
-                touches. Our greatest joy is helping guests feel welcome,
-                return as friends, and make our homes their own in paradise.
+                Orsini Stays, and we personally manage each home and guest stay.
+                We love traveling and hosting, and believe gracious hospitality
+                lives in the details. Ed brings the technical touch while
+                Amanda adds the thoughtful finishing touches. Together, we aim
+                to respond quickly, share the places we genuinely love, and help
+                every guest feel at home in paradise.
               </p>
 
               <ul class="host-details" aria-label="About your hosts">
@@ -1695,11 +1856,11 @@
 
           <div class="about-contact" id="contact">
             <div>
-              <h3>Questions about Orsini Stays?</h3>
+              <h3>Talk directly with your hosts</h3>
               <p>
                 Email us with the property name, your preferred check-in and
-                check-out dates, and the number of guests. We’ll reply with
-                availability, rates, and next steps.
+                check-out dates, and the number of guests. Ed or Amanda will
+                reply with availability, rates, and next steps.
               </p>
             </div>
             <div class="cta">
