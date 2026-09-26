@@ -4,12 +4,12 @@ window.ORSINI_AVAILABILITY = {
     "dreamcatcher": {
       "unavailable": [
         {
-          "start": "2026-09-20",
+          "start": "2026-09-24",
           "end": "2026-10-12"
         },
         {
-          "start": "2027-09-25",
-          "end": "2027-09-26"
+          "start": "2027-09-26",
+          "end": "2027-09-27"
         }
       ]
     },
@@ -28,8 +28,8 @@ window.ORSINI_AVAILABILITY = {
           "end": "2027-01-09"
         },
         {
-          "start": "2027-09-25",
-          "end": "2027-09-26"
+          "start": "2027-09-26",
+          "end": "2027-09-27"
         }
       ]
     }
