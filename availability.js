@@ -8,7 +8,7 @@ window.ORSINI_AVAILABILITY = {
           "end": "2026-10-12"
         },
         {
-          "start": "2027-09-26",
+          "start": "2027-09-27",
           "end": "2027-09-28"
         }
       ]
@@ -28,7 +28,7 @@ window.ORSINI_AVAILABILITY = {
           "end": "2027-01-09"
         },
         {
-          "start": "2027-09-26",
+          "start": "2027-09-27",
           "end": "2027-09-28"
         }
       ]
