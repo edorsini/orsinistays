@@ -44,6 +44,13 @@ GitHub’s normal Actions failure notifications use your GitHub account’s emai
 preferences; enable email delivery for Actions under **Settings →
 Notifications** in GitHub.
 
+## Travel guide
+
+The SEO-friendly travel guide lives in `guides/`. To publish a new article,
+copy an existing article folder, then update its title and metadata, JSON-LD,
+`data-guide` slug, image alt text, related links, the card on `guides/index.html`,
+and `sitemap.xml`. Run `npm run validate` before opening the pull request.
+
 ## Airbnb availability
 
 The property calendars read blocked date ranges from `availability.json`. The

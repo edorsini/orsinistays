@@ -5,6 +5,7 @@
     "capcanahappyplace.com": "happy-place",
     "www.capcanahappyplace.com": "happy-place",
   };
+  const propertyNames = new Set(Object.values(propertiesByHost));
 
   function currentProperty() {
     return document.body?.dataset.property || "home";
@@ -54,9 +55,14 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     const property = currentProperty();
+    const guide = document.body?.dataset.guide;
 
-    if (property !== "home") {
+    if (propertyNames.has(property)) {
       track("view_property", { property_name: property });
+    }
+
+    if (guide) {
+      track("view_guide", { guide_slug: guide });
     }
 
     document.addEventListener("click", (event) => {

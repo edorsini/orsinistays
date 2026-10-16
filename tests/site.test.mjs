@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import vm from "node:vm";
@@ -10,7 +10,28 @@ const siteDirectory = path.resolve(
   projectRoot,
   process.env.SITE_DIRECTORY || ".",
 );
-const pages = ["index.html", "dreamcatcher/index.html", "happy-place/index.html"];
+const excludedDirectories = new Set([".git", ".github", "dist", "node_modules", "scripts"]);
+
+function discoverPages(directory = siteDirectory, relativeDirectory = "") {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    if (entry.isDirectory()) {
+      if (excludedDirectories.has(entry.name)) return [];
+      return discoverPages(path.join(directory, entry.name), path.join(relativeDirectory, entry.name));
+    }
+
+    return entry.isFile() && entry.name === "index.html"
+      ? [path.join(relativeDirectory, entry.name)]
+      : [];
+  });
+}
+
+const pages = discoverPages();
+const guideSlugs = [
+  "cap-cana-vs-punta-cana-village",
+  "best-beaches-near-punta-cana",
+  "where-to-stay-near-puj-airport",
+  "ojos-indigenas-guide",
+];
 
 function sitePath(file) {
   return path.join(siteDirectory, file);
@@ -118,7 +139,7 @@ test("HTML references resolve locally and new tabs are safe", () => {
 });
 
 test("CSS and executable JavaScript parse", () => {
-  const cssFiles = ["property.css"];
+  const cssFiles = ["property.css", "guide.css"];
   const homeHtml = readSiteFile("index.html");
   const inlineStyles = [...homeHtml.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)].map(
     (match) => match[1],
@@ -203,4 +224,21 @@ test("Instagram links and analytics tracking remain wired", () => {
   assert.match(html, /https:\/\/www\.instagram\.com\/orsinistays\//);
   assert.match(analytics, /view_instagram_reel/);
   assert.match(analytics, /follow_instagram/);
+});
+
+test("travel guide routes, article schema, and sitemap stay in sync", () => {
+  const guideIndex = readSiteFile("guides/index.html");
+  const sitemap = readSiteFile("sitemap.xml");
+
+  for (const slug of guideSlugs) {
+    const page = `guides/${slug}/index.html`;
+    const html = readSiteFile(page);
+    assert.match(guideIndex, new RegExp(`href=["']${slug}/["']`));
+    assert.match(html, new RegExp(`data-guide=["']${slug}["']`));
+    assert.match(html, /["']@type["']\s*:\s*["']BlogPosting["']/);
+    assert.match(sitemap, new RegExp(`<loc>https://www\\.orsinistays\\.com/guides/${slug}/</loc>`));
+  }
+
+  assert.match(sitemap, /<loc>https:\/\/www\.orsinistays\.com\/guides\/<\/loc>/);
+  assert.match(readSiteFile("analytics.js"), /view_guide/);
 });
