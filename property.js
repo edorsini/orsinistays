@@ -191,6 +191,13 @@
         1,
       );
       renderCalendar(widget);
+      window.orsiniAnalytics?.track("calendar_navigate", {
+        property_name: widget.dataset.property,
+        direction: button.dataset.calendarAction,
+        calendar_month: `${widget.calendarState.month.getFullYear()}-${String(
+          widget.calendarState.month.getMonth() + 1,
+        ).padStart(2, "0")}`,
+      });
     });
   });
 
