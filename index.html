@@ -226,6 +226,25 @@
         color: inherit;
         text-decoration: none;
       }
+      .skip-link {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 100;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: #07111d;
+        font-weight: 800;
+        transform: translateY(-160%);
+      }
+      .skip-link:focus-visible {
+        transform: translateY(0);
+      }
+      :focus-visible {
+        outline: 3px solid rgba(56, 189, 248, 0.8);
+        outline-offset: 3px;
+      }
       .container {
         max-width: 1100px;
         margin: 0 auto;
@@ -553,11 +572,11 @@
       }
       .calendar-day.unavailable {
         background: rgba(148, 163, 184, 0.1);
-        color: #64748b;
+        color: #cbd5e1;
         text-decoration: line-through;
       }
       .calendar-day.past {
-        color: #475569;
+        color: #94a3b8;
       }
       .calendar-day.today {
         border-color: var(--accent-2);
@@ -1132,9 +1151,20 @@
           display: grid;
         }
       }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+        }
+      }
     </style>
   </head>
   <body data-property="home">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="container">
       <header>
         <a href="https://www.orsinistays.com">
@@ -1350,7 +1380,7 @@
                     </button>
                   </div>
                 </div>
-                <div class="availability-calendar" aria-live="polite">
+                <div class="availability-calendar">
                   <p class="calendar-status">Loading availability…</p>
                 </div>
                 <div class="calendar-legend" aria-hidden="true">
@@ -1458,7 +1488,7 @@
                     </button>
                   </div>
                 </div>
-                <div class="availability-calendar" aria-live="polite">
+                <div class="availability-calendar">
                   <p class="calendar-status">Loading availability…</p>
                 </div>
                 <div class="calendar-legend" aria-hidden="true">
@@ -1597,7 +1627,7 @@
             <h3 style="margin-top: 0">Punta Cana Village Dreamcatcher</h3>
             <div class="map">
               <iframe
-                title="Map A"
+                title="Map of Punta Cana Village Dreamcatcher"
                 width="100%"
                 height="100%"
                 style="border: 0"
@@ -1613,7 +1643,7 @@
             <h3 style="margin-top: 0">Cap Cana Happy Place</h3>
             <div class="map">
               <iframe
-                title="Map B"
+                title="Map of Cap Cana Happy Place"
                 width="100%"
                 height="100%"
                 style="border: 0"
@@ -1645,21 +1675,22 @@
               </h3>
               <div
                 class="local-filters"
-                role="toolbar"
+                role="group"
                 aria-label="Filter places"
               >
-                <!-- Optional small filter buttons — non-functional without JS -->
-                <button class="filter-btn" aria-pressed="false">All</button>
-                <button class="filter-btn" aria-pressed="false">Food</button>
-                <button class="filter-btn" aria-pressed="false">
+                <button class="filter-btn" type="button" data-category="all" aria-controls="local-places" aria-pressed="true">All</button>
+                <button class="filter-btn" type="button" data-category="food" aria-controls="local-places" aria-pressed="false">Food</button>
+                <button class="filter-btn" type="button" data-category="shopping" aria-controls="local-places" aria-pressed="false">
                   Shopping
                 </button>
-                <button class="filter-btn" aria-pressed="false">Nature</button>
+                <button class="filter-btn" type="button" data-category="nature" aria-controls="local-places" aria-pressed="false">Nature</button>
+                <button class="filter-btn" type="button" data-category="entertainment" aria-controls="local-places" aria-pressed="false">Entertainment</button>
               </div>
             </div>
 
-            <div class="local-list" role="list">
-              <div class="place" role="listitem">
+            <p class="sr-only" id="local-filter-status" aria-live="polite"></p>
+            <div class="local-list" id="local-places" role="list">
+              <div class="place" data-category="shopping" role="listitem">
                 <div class="icon" aria-hidden="true">🛍️</div>
                 <div class="meta">
                   <h4>Galerías Puntacana</h4>
@@ -1670,7 +1701,7 @@
                 </div>
               </div>
 
-              <div class="place" role="listitem">
+              <div class="place" data-category="shopping" role="listitem">
                 <div class="icon" aria-hidden="true">🛒</div>
                 <div class="meta">
                   <h4>Supermercado Nacional</h4>
@@ -1681,7 +1712,7 @@
                 </div>
               </div>
 
-              <div class="place" role="listitem">
+              <div class="place" data-category="food" role="listitem">
                 <div class="icon" aria-hidden="true">🍺</div>
                 <div class="meta">
                   <h4>Cervecería Punta Cana</h4>
@@ -1692,7 +1723,7 @@
                 </div>
               </div>
 
-              <div class="place" role="listitem">
+              <div class="place" data-category="shopping" role="listitem">
                 <div class="icon" aria-hidden="true">🛍️</div>
                 <div class="meta">
                   <h4>Blue Mall</h4>
@@ -1703,7 +1734,7 @@
                 </div>
               </div>
 
-              <div class="place" role="listitem">
+              <div class="place" data-category="nature" role="listitem">
                 <div class="icon" aria-hidden="true">🌿</div>
                 <div class="meta">
                   <h4>Ojos Indígenas Ecological Reserve</h4>
@@ -1714,7 +1745,7 @@
                 </div>
               </div>
 
-              <div class="place" role="listitem">
+              <div class="place" data-category="entertainment" role="listitem">
                 <div class="icon" aria-hidden="true">🎭</div>
                 <div class="meta">
                   <h4>Coco Bongo</h4>
@@ -1725,7 +1756,7 @@
                 </div>
               </div>
 
-              <div class="place" role="listitem">
+              <div class="place" data-category="nature" role="listitem">
                 <div class="icon" aria-hidden="true">🎢</div>
                 <div class="meta">
                   <h4>Bávaro Adventure Park</h4>
@@ -1736,7 +1767,7 @@
                 </div>
               </div>
 
-              <div class="place" role="listitem">
+              <div class="place" data-category="food" role="listitem">
                 <div class="icon" aria-hidden="true">⚓</div>
                 <div class="meta">
                   <h4>Cap Cana Marina</h4>
@@ -1747,7 +1778,7 @@
                 </div>
               </div>
 
-              <div class="place" role="listitem">
+              <div class="place" data-category="nature" role="listitem">
                 <div class="icon" aria-hidden="true">💦</div>
                 <div class="meta">
                   <h4>El Dorado Water Park</h4>
@@ -1758,7 +1789,7 @@
                 </div>
               </div>
 
-              <div class="place" role="listitem">
+              <div class="place" data-category="entertainment" role="listitem">
                 <div class="icon" aria-hidden="true">🕳️</div>
                 <div class="meta">
                   <h4>Imagine Cave</h4>
@@ -1769,7 +1800,7 @@
                 </div>
               </div>
 
-              <div class="place" role="listitem">
+              <div class="place" data-category="nature" role="listitem">
                 <div class="icon" aria-hidden="true">🧭</div>
                 <div class="meta">
                   <h4>Scape Park</h4>
@@ -2306,10 +2337,12 @@
 
         if (!btn || !nav) return;
 
-        const closeMenu = () => {
+        const closeMenu = ({ restoreFocus = false } = {}) => {
+          const wasOpen = nav.classList.contains("open");
           nav.classList.remove("open");
           btn.setAttribute("aria-expanded", "false");
           btn.setAttribute("aria-label", "Open menu");
+          if (restoreFocus && wasOpen) btn.focus();
         };
 
         const toggleMenu = () => {
@@ -2324,13 +2357,16 @@
         // Close when clicking a link
         nav.addEventListener("click", (e) => {
           if (e.target instanceof HTMLElement && e.target.tagName === "A") {
-            closeMenu();
+            closeMenu({ restoreFocus: true });
           }
         });
 
         // Close on Escape
         document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape") closeMenu();
+          if (e.key === "Escape" && nav.classList.contains("open")) {
+            e.preventDefault();
+            closeMenu({ restoreFocus: true });
+          }
         });
 
         // Close when clicking outside
@@ -2349,6 +2385,39 @@
           },
           { capture: true },
         );
+      })();
+    </script>
+
+    <script>
+      (() => {
+        const filters = Array.from(document.querySelectorAll(".filter-btn"));
+        const places = Array.from(document.querySelectorAll("#local-places .place"));
+        const status = document.getElementById("local-filter-status");
+
+        if (!filters.length || !places.length || !status) return;
+
+        filters.forEach((filter) => {
+          filter.addEventListener("click", () => {
+            const category = filter.dataset.category;
+            filters.forEach((button) => {
+              button.setAttribute("aria-pressed", String(button === filter));
+            });
+
+            let visibleCount = 0;
+            places.forEach((place) => {
+              const shouldShow =
+                category === "all" || place.dataset.category === category;
+              place.hidden = !shouldShow;
+              if (shouldShow) visibleCount += 1;
+            });
+
+            const categoryName = filter.textContent.trim();
+            status.textContent =
+              category === "all"
+                ? `Showing all ${visibleCount} recommendations.`
+                : `Showing ${visibleCount} ${categoryName.toLowerCase()} recommendations.`;
+          });
+        });
       })();
     </script>
 
