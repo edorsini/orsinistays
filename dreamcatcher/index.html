@@ -52,8 +52,8 @@
       property="og:image:alt"
       content="Tropical pool and courtyard at Punta Cana Village Dreamcatcher"
     />
-    <meta property="og:image:width" content="720" />
-    <meta property="og:image:height" content="540" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="900" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -67,6 +67,10 @@
       name="twitter:image"
       content="https://www.orsinistays.com/img/dreamcatcher/pool-courtyard.jpg"
     />
+    <meta
+      name="twitter:image:alt"
+      content="Tropical pool and courtyard at Punta Cana Village Dreamcatcher"
+    />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -76,6 +80,9 @@
             "@id": "https://www.orsinistays.com/dreamcatcher/#rental",
             "identifier": "orsini-stays-dreamcatcher",
             "url": "https://www.orsinistays.com/dreamcatcher/",
+            "mainEntityOfPage": {
+              "@id": "https://www.orsinistays.com/dreamcatcher/#webpage"
+            },
             "name": "Punta Cana Village Dreamcatcher",
             "description": "A spacious two-bedroom Punta Cana Village vacation rental with a pool view, private balcony, workspace, fast Wi-Fi, and easy access to PUJ airport.",
             "additionalType": "Apartment",
@@ -90,8 +97,11 @@
               "addressRegion": "La Altagracia",
               "addressCountry": "DO"
             },
-            "latitude": 18.556735,
-            "longitude": -68.373294,
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 18.556735,
+              "longitude": -68.373294
+            },
             "brand": {
               "@type": "Brand",
               "name": "Orsini Stays"
@@ -140,6 +150,23 @@
                 }
               ]
             }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.orsinistays.com/dreamcatcher/#webpage",
+            "url": "https://www.orsinistays.com/dreamcatcher/",
+            "name": "2-Bedroom Punta Cana Village Rental | Dreamcatcher",
+            "description": "A spacious two-bedroom Punta Cana Village vacation rental with a pool view, private balcony, workspace, fast Wi-Fi, and easy access to PUJ airport.",
+            "isPartOf": {
+              "@id": "https://www.orsinistays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://www.orsinistays.com/dreamcatcher/#breadcrumb"
+            },
+            "mainEntity": {
+              "@id": "https://www.orsinistays.com/dreamcatcher/#rental"
+            },
+            "inLanguage": "en-US"
           },
           {
             "@type": "BreadcrumbList",
