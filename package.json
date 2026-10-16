@@ -1,0 +1,19 @@
+{
+  "name": "orsini-stays",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Build tools for the Orsini Stays static website.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run optimize",
+    "optimize": "node scripts/optimize.mjs"
+  },
+  "devDependencies": {
+    "html-minifier-terser": "^7.2.0",
+    "lightningcss": "^1.29.2",
+    "terser": "^5.39.0"
+  }
+}

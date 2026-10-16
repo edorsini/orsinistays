@@ -2,6 +2,21 @@
 
 Static website for [orsinistays.com](https://www.orsinistays.com).
 
+## Production optimization
+
+Install the local build tools once, then create an optimized deployable site in
+`dist/`:
+
+```bash
+npm install
+npm run optimize
+```
+
+The source files remain unchanged. The build minifies HTML (including inline
+CSS and JavaScript), processes standalone CSS with Lightning CSS, and minifies
+standalone JavaScript with Terser—the maintained successor to UglifyJS. Deploy
+the contents of `dist/` when you want the optimized version live.
+
 ## Airbnb availability
 
 The property calendars read blocked date ranges from `availability.json`. The
