@@ -1042,6 +1042,134 @@
         border-color: rgba(56, 189, 248, 0.18);
       }
 
+      .instagram-section {
+        padding: clamp(24px, 4vw, 42px);
+        border: 1px solid #263449;
+        border-radius: 24px;
+        background:
+          radial-gradient(
+            circle at 90% 0%,
+            rgba(167, 139, 250, 0.12),
+            transparent 34%
+          ),
+          var(--card);
+      }
+      .instagram-heading {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 24px;
+      }
+      .instagram-heading h2 {
+        margin-bottom: 8px;
+      }
+      .instagram-heading p:last-child {
+        max-width: 650px;
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+      .instagram-follow {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .instagram-follow:hover {
+        border-color: var(--accent);
+      }
+      .instagram-icon {
+        width: 18px;
+        height: 18px;
+      }
+      .instagram-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+        gap: 16px;
+      }
+      .instagram-reel {
+        display: block;
+        height: 100%;
+        overflow: hidden;
+        border: 1px solid #263449;
+        border-radius: 16px;
+        background: #0b1220;
+        transition:
+          border-color 150ms ease,
+          transform 150ms ease;
+      }
+      .instagram-reel:hover {
+        border-color: rgba(56, 189, 248, 0.75);
+        transform: translateY(-3px);
+      }
+      .instagram-preview {
+        position: relative;
+        aspect-ratio: 9 / 16;
+        overflow: hidden;
+        background: #020617;
+      }
+      .instagram-preview img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .instagram-play {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        border-radius: 999px;
+        background: rgba(2, 6, 23, 0.75);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .instagram-reel-copy {
+        padding: 14px;
+      }
+      .instagram-reel-copy h3 {
+        margin: 0 0 6px;
+        font-size: 16px;
+        line-height: 1.3;
+      }
+      .instagram-reel-copy p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      @media (max-width: 620px) {
+        .instagram-heading {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .instagram-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+        .instagram-reel-copy {
+          padding: 11px;
+        }
+        .instagram-reel-copy h3 {
+          font-size: 14px;
+        }
+        .instagram-reel-copy p {
+          font-size: 12px;
+        }
+      }
+
       /* --- compare styles --- */
       .compare-wrap {
         padding: 16px;
@@ -1921,6 +2049,140 @@
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="instagram-heading">
+        <div class="instagram-section">
+          <div class="instagram-heading">
+            <div>
+              <p class="section-kicker">From Instagram</p>
+              <h2 id="instagram-heading">Punta Cana, in the moment</h2>
+              <p>
+                Follow along for quiet beach mornings, local discoveries, and
+                a little of the rhythm that makes this corner of the Dominican
+                Republic special.
+              </p>
+            </div>
+            <a
+              class="instagram-follow"
+              href="https://www.instagram.com/orsinistays/"
+              target="_blank"
+              rel="noopener"
+              data-instagram-type="profile"
+              data-analytics-placement="instagram_section"
+              aria-label="Follow Orsini Stays on Instagram, opens in a new tab"
+            >
+              <svg class="instagram-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2" />
+                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+                <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" />
+              </svg>
+              Follow @orsinistays
+            </a>
+          </div>
+
+          <div class="instagram-grid" role="list" aria-label="Featured Instagram Reels">
+            <div role="listitem">
+              <a
+                class="instagram-reel"
+                href="https://www.instagram.com/orsinistays/reel/DefmQ3vsmrd/"
+                target="_blank"
+                rel="noopener"
+                data-instagram-type="reel"
+                data-reel-id="DefmQ3vsmrd"
+                data-analytics-placement="instagram_section"
+                aria-label="Watch the Punta Cana plant quiz Reel on Instagram, opens in a new tab"
+              >
+                <div class="instagram-preview">
+                  <picture>
+                    <source srcset="img/instagram/plant-quiz.webp" type="image/webp" />
+                    <img src="img/instagram/plant-quiz.jpg" alt="A hand pointing to a small plant in grass, with Spanish text asking viewers to name it" width="361" height="640" loading="lazy" />
+                  </picture>
+                  <span class="instagram-play" aria-hidden="true">▶ Reel</span>
+                </div>
+                <div class="instagram-reel-copy">
+                  <h3>A Punta Cana plant quiz</h3>
+                  <p>A little tropical curiosity from our neighborhood.</p>
+                </div>
+              </a>
+            </div>
+
+            <div role="listitem">
+              <a
+                class="instagram-reel"
+                href="https://www.instagram.com/orsinistays/reel/DeBtv6wBFGa/"
+                target="_blank"
+                rel="noopener"
+                data-instagram-type="reel"
+                data-reel-id="DeBtv6wBFGa"
+                data-analytics-placement="instagram_section"
+                aria-label="Watch the Peace looks different in Punta Cana Reel on Instagram, opens in a new tab"
+              >
+                <div class="instagram-preview">
+                  <picture>
+                    <source srcset="img/instagram/punta-cana-sunset.webp" type="image/webp" />
+                    <img src="img/instagram/punta-cana-sunset.jpg" alt="Sunset reflecting on the beach in Punta Cana" width="361" height="640" loading="lazy" />
+                  </picture>
+                  <span class="instagram-play" aria-hidden="true">▶ Reel</span>
+                </div>
+                <div class="instagram-reel-copy">
+                  <h3>Peace looks different here</h3>
+                  <p>Slow mornings, warm breezes, and a Caribbean sunset.</p>
+                </div>
+              </a>
+            </div>
+
+            <div role="listitem">
+              <a
+                class="instagram-reel"
+                href="https://www.instagram.com/orsinistays/reel/Dd8-bZHBbde/"
+                target="_blank"
+                rel="noopener"
+                data-instagram-type="reel"
+                data-reel-id="Dd8-bZHBbde"
+                data-analytics-placement="instagram_section"
+                aria-label="Watch the rhythm of Punta Cana Reel on Instagram, opens in a new tab"
+              >
+                <div class="instagram-preview">
+                  <picture>
+                    <source srcset="img/instagram/merengue-welcome.webp" type="image/webp" />
+                    <img src="img/instagram/merengue-welcome.jpg" alt="Two musicians playing merengue ripiao music outdoors" width="360" height="640" loading="lazy" />
+                  </picture>
+                  <span class="instagram-play" aria-hidden="true">▶ Reel</span>
+                </div>
+                <div class="instagram-reel-copy">
+                  <h3>The rhythm of Punta Cana</h3>
+                  <p>A warm welcome with merengue ripiao.</p>
+                </div>
+              </a>
+            </div>
+
+            <div role="listitem">
+              <a
+                class="instagram-reel"
+                href="https://www.instagram.com/orsinistays/reel/Dd9E0dBhi0A/"
+                target="_blank"
+                rel="noopener"
+                data-instagram-type="reel"
+                data-reel-id="Dd9E0dBhi0A"
+                data-analytics-placement="instagram_section"
+                aria-label="Watch the Ojos Indígenas hidden gem Reel on Instagram, opens in a new tab"
+              >
+                <div class="instagram-preview">
+                  <picture>
+                    <source srcset="img/instagram/ojos-indigenas.webp" type="image/webp" />
+                    <img src="img/instagram/ojos-indigenas.jpg" alt="A swimmer in the Ojos Indígenas freshwater lagoon" width="361" height="640" loading="lazy" />
+                  </picture>
+                  <span class="instagram-play" aria-hidden="true">▶ Reel</span>
+                </div>
+                <div class="instagram-reel-copy">
+                  <h3>A hidden gem: Ojos Indígenas</h3>
+                  <p>Forest trails, clear lagoons, and a quieter side of Punta Cana.</p>
+                </div>
+              </a>
             </div>
           </div>
         </div>

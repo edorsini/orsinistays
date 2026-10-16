@@ -37,6 +37,19 @@
     }
   }
 
+  function instagramTypeFor(link) {
+    try {
+      const hostname = new URL(link.href, window.location.href).hostname;
+      if (hostname === "instagram.com" || hostname === "www.instagram.com") {
+        return link.dataset.instagramType || "profile";
+      }
+    } catch {
+      return null;
+    }
+
+    return null;
+  }
+
   window.orsiniAnalytics = { track };
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -49,6 +62,24 @@
     document.addEventListener("click", (event) => {
       const link = event.target.closest("a");
       if (link) {
+        const instagramType = instagramTypeFor(link);
+        if (instagramType) {
+          const parameters = {
+            property_name: currentProperty(),
+            placement: placementFor(link),
+          };
+
+          if (instagramType === "reel" && link.dataset.reelId) {
+            parameters.reel_id = link.dataset.reelId;
+          }
+
+          track(
+            instagramType === "reel" ? "view_instagram_reel" : "follow_instagram",
+            parameters,
+          );
+          return;
+        }
+
         const listingProperty = propertyForListing(link);
         if (listingProperty) {
           track("begin_booking", {
