@@ -22,6 +22,28 @@ GitHub Actions builds and deploys `dist/` automatically after every push to
 Actions** once. The availability updater triggers the same deployment only
 when its calendar data has changed.
 
+## Automated site checks
+
+Run the complete checks locally with:
+
+```bash
+npm run validate
+```
+
+This validates page landmarks and metadata, local links and assets, CSS and
+JavaScript syntax, JSON-LD, availability data, Instagram analytics wiring, and
+the final optimized build. After `npm install`, the local pre-commit hook runs
+these checks before each commit. The **Site checks** GitHub Action runs the
+same validation for pushes and pull requests; deployment runs only after it
+passes.
+
+To stop failed changes from reaching `main`, configure a branch rule in GitHub:
+**Settings → Rules → Rulesets → New branch ruleset**. Target the `main` branch,
+require a pull request, and require the **Site checks / test** status check.
+GitHub’s normal Actions failure notifications use your GitHub account’s email
+preferences; enable email delivery for Actions under **Settings →
+Notifications** in GitHub.
+
 ## Airbnb availability
 
 The property calendars read blocked date ranges from `availability.json`. The

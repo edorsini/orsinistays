@@ -9,10 +9,15 @@
   },
   "scripts": {
     "build": "npm run optimize",
-    "optimize": "node scripts/optimize.mjs"
+    "optimize": "node scripts/optimize.mjs",
+    "prepare": "husky",
+    "test": "node --test tests/site.test.mjs",
+    "test:build": "npm run optimize && SITE_DIRECTORY=dist node --test tests/site.test.mjs",
+    "validate": "npm test && npm run test:build"
   },
   "devDependencies": {
     "html-minifier-terser": "^7.2.0",
+    "husky": "^9.1.7",
     "lightningcss": "^1.29.2",
     "terser": "^5.39.0"
   }

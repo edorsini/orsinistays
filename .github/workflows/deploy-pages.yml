@@ -31,8 +31,8 @@ jobs:
       - name: Install build tools
         run: npm ci
 
-      - name: Build optimized site
-        run: npm run optimize
+      - name: Validate and build optimized site
+        run: npm run validate
 
       - name: Upload optimized site
         uses: actions/upload-pages-artifact@v3
