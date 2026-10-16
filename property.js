@@ -9,6 +9,7 @@
 
   if (dialog && galleryItems.length) {
     const image = dialog.querySelector(".lightbox-image");
+    const imageSource = dialog.querySelector(".lightbox-source");
     const caption = dialog.querySelector(".lightbox-caption-text");
     const count = dialog.querySelector(".lightbox-count");
     let currentIndex = 0;
@@ -17,7 +18,11 @@
       currentIndex = (index + galleryItems.length) % galleryItems.length;
       const item = galleryItems[currentIndex];
       const itemImage = item.querySelector("img");
-      image.src = item.dataset.full || itemImage.src;
+      const fullImage = item.dataset.full || itemImage.src;
+      if (imageSource) {
+        imageSource.srcset = fullImage.replace(/\.jpg$/i, ".webp");
+      }
+      image.src = fullImage;
       image.alt = itemImage.alt;
       caption.textContent = item.dataset.caption || itemImage.alt;
       count.textContent = `${currentIndex + 1} of ${galleryItems.length}`;

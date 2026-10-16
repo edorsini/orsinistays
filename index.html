@@ -399,6 +399,12 @@
         aspect-ratio: 16/9;
         background: #0b1220;
       }
+      .card .media > a,
+      .card .media picture {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
       .card .media img {
         width: 100%;
         height: 100%;
@@ -1265,14 +1271,17 @@
                 rel="noopener"
                 aria-label="View Punta Cana Village Dreamcatcher on Airbnb"
               >
-                <img
+                <picture>
+                  <source srcset="img/dreamcatcher/pool-courtyard.webp" type="image/webp" />
+                  <img
                   src="img/dreamcatcher/pool-courtyard.jpg"
                   alt="Dreamcatcher tropical pool and courtyard"
                   width="720"
                   height="540"
                   loading="lazy"
                   decoding="async"
-                />
+                  />
+                </picture>
               </a>
 
               <span
@@ -1373,14 +1382,17 @@
                 rel="noopener"
                 aria-label="View Cap Cana Happy Place on Airbnb"
               >
-                <img
+                <picture>
+                  <source srcset="img/happy-place/balcony-pool.webp" type="image/webp" />
+                  <img
                   src="img/happy-place/balcony-pool.jpg"
                   alt="Happy Place balcony overlooking the pool"
                   width="720"
                   height="540"
                   loading="lazy"
                   decoding="async"
-                />
+                  />
+                </picture>
               </a>
               <span class="badge">Sleeps 2</span>
               <span
