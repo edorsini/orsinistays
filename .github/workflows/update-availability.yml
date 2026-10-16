@@ -6,6 +6,7 @@ on:
     - cron: "17 * * * *"
 
 permissions:
+  actions: write
   contents: write
 
 concurrency:
@@ -31,9 +32,11 @@ jobs:
         run: node scripts/update-availability.mjs
 
       - name: Publish availability changes
+        id: publish
         run: |
           if git diff --quiet -- availability.json availability.js; then
             echo "Availability has not changed."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -42,3 +45,10 @@ jobs:
           git add availability.json availability.js
           git commit -m "Update Airbnb availability"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy changed availability
+        if: steps.publish.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy-pages.yml --ref main

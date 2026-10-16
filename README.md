@@ -17,6 +17,11 @@ CSS and JavaScript), processes standalone CSS with Lightning CSS, and minifies
 standalone JavaScript with Terser—the maintained successor to UglifyJS. Deploy
 the contents of `dist/` when you want the optimized version live.
 
+GitHub Actions builds and deploys `dist/` automatically after every push to
+`main`. In the repository, set **Settings → Pages → Source** to **GitHub
+Actions** once. The availability updater triggers the same deployment only
+when its calendar data has changed.
+
 ## Airbnb availability
 
 The property calendars read blocked date ranges from `availability.json`. The
