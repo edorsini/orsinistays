@@ -17,10 +17,31 @@ CSS and JavaScript), processes standalone CSS with Lightning CSS, and minifies
 standalone JavaScript with Terser—the maintained successor to UglifyJS. Deploy
 the contents of `dist/` when you want the optimized version live.
 
-GitHub Actions builds and deploys `dist/` automatically after every push to
-`main`. In the repository, set **Settings → Pages → Source** to **GitHub
-Actions** once. The availability updater triggers the same deployment only
-when its calendar data has changed.
+## GitHub Actions
+
+The repository has three GitHub Actions workflows:
+
+- **Site checks** (`.github/workflows/site-checks.yml`) runs for pull requests
+  targeting `main`, pushes to `main`, and manual runs from the Actions tab. It
+  installs the build tools and runs `npm run validate`.
+- **Deploy optimized site** (`.github/workflows/deploy-pages.yml`) runs on
+  pushes to `main` and can also be started manually. It installs the build
+  tools, runs `npm run validate`, builds the optimized site in `dist/`, and
+  deploys it to GitHub Pages. Set **Settings → Pages → Source** to **GitHub
+  Actions** once to enable Pages deployments.
+- **Update Airbnb availability**
+  (`.github/workflows/update-availability.yml`) runs hourly at 17 minutes past
+  the hour and can also be started manually. It fetches both Airbnb calendars
+  and updates `availability.json` and `availability.js` if their dates have
+  changed. When there is a change, it commits and pushes those files directly
+  to `main`, then starts the deploy workflow. When there is no change, it
+  skips the commit and deployment.
+
+Because the availability workflow pushes directly to `main`, repository rules
+must allow that workflow's push; requiring a pull request or a status check
+before updating `main` will block it. Site checks still run on pushes to
+`main` and pull requests, and the deploy workflow validates the site before
+publishing.
 
 ## Automated site checks
 
@@ -33,16 +54,15 @@ npm run validate
 This validates page landmarks and metadata, local links and assets, CSS and
 JavaScript syntax, JSON-LD, availability data, Instagram analytics wiring, and
 the final optimized build. After `npm install`, the local pre-commit hook runs
-these checks before each commit. The **Site checks** GitHub Action runs the
-same validation for pushes and pull requests; deployment runs only after it
-passes.
+these checks before each commit. The **Site checks** workflow runs the same
+validation for pushes and pull requests.
 
-To stop failed changes from reaching `main`, configure a branch rule in GitHub:
-**Settings → Rules → Rulesets → New branch ruleset**. Target the `main` branch,
-require a pull request, and require the **Site checks / test** status check.
-GitHub’s normal Actions failure notifications use your GitHub account’s email
-preferences; enable email delivery for Actions under **Settings →
-Notifications** in GitHub.
+You can configure branch rules under **Settings → Rules → Rulesets**. Keep in
+mind that requiring a pull request or a status check before changes reach
+`main` also blocks the availability workflow's direct push unless the rule
+explicitly allows that workflow to bypass it. GitHub Actions failure
+notifications use your GitHub account's email preferences; enable email
+delivery for Actions under **Settings → Notifications** in GitHub.
 
 ## Travel guide
 
