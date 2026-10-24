@@ -31,6 +31,7 @@ const guideSlugs = [
   "best-beaches-near-punta-cana",
   "where-to-stay-near-puj-airport",
   "ojos-indigenas-guide",
+  "october-events-punta-cana-village-2026",
 ];
 
 function sitePath(file) {
