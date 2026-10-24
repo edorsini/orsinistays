@@ -140,6 +140,25 @@ test("HTML references resolve locally and new tabs are safe", () => {
   }
 });
 
+test("event flyer thumbnails open in an accessible modal", () => {
+  for (const slug of [
+    "october-events-punta-cana-village-2026",
+    "october-events-cap-cana-2026",
+  ]) {
+    const page = `guides/${slug}/index.html`;
+    const html = readSiteFile(page);
+    const thumbnails = html.match(/<a\b[^>]*class=["'][^"']*flyer-thumbnail[^"']*["'][^>]*>/gi) || [];
+
+    assert.ok(thumbnails.length > 0, `${page} needs flyer thumbnails`);
+    for (const thumbnail of thumbnails) {
+      assert.doesNotMatch(thumbnail, /\btarget=["']_blank["']/i, `${page} flyer should not open a new tab`);
+    }
+    assert.match(html, /<dialog\b[^>]*id=["']flyer-lightbox["'][^>]*aria-label=["']Event flyer viewer["']/i);
+    assert.match(html, /class=["']flyer-lightbox-close["'][^>]*aria-label=["']Close flyer["']/i);
+    assert.match(html, /<script\b[^>]*src=["']\.\.\/\.\.\/guide\.js["']/i);
+  }
+});
+
 test("CSS and executable JavaScript parse", () => {
   const cssFiles = ["property.css", "guide.css"];
   const homeHtml = readSiteFile("index.html");
@@ -157,7 +176,7 @@ test("CSS and executable JavaScript parse", () => {
     );
   }
 
-  for (const scriptFile of ["analytics.js", "availability.js", "property.js"]) {
+  for (const scriptFile of ["analytics.js", "availability.js", "property.js", "guide.js"]) {
     assert.doesNotThrow(
       () => new vm.Script(readSiteFile(scriptFile), { filename: scriptFile }),
       `${scriptFile} does not parse`,
