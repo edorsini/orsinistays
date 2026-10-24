@@ -32,6 +32,7 @@ const guideSlugs = [
   "where-to-stay-near-puj-airport",
   "ojos-indigenas-guide",
   "october-events-punta-cana-village-2026",
+  "october-events-cap-cana-2026",
 ];
 
 function sitePath(file) {
