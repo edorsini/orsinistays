@@ -33,6 +33,7 @@ const guideSlugs = [
   "ojos-indigenas-guide",
   "october-events-punta-cana-village-2026",
   "october-events-cap-cana-2026",
+  "holiday-events-punta-cana-2026-2027",
 ];
 
 function sitePath(file) {
@@ -144,6 +145,7 @@ test("event flyer thumbnails open in an accessible modal", () => {
   for (const slug of [
     "october-events-punta-cana-village-2026",
     "october-events-cap-cana-2026",
+    "holiday-events-punta-cana-2026-2027",
   ]) {
     const page = `guides/${slug}/index.html`;
     const html = readSiteFile(page);
