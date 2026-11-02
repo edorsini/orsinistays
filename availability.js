@@ -5,7 +5,7 @@ window.ORSINI_AVAILABILITY = {
       "unavailable": [
         {
           "start": "2026-10-29",
-          "end": "2026-11-06"
+          "end": "2026-11-09"
         },
         {
           "start": "2027-11-02",
