@@ -13,16 +13,12 @@ window.ORSINI_AVAILABILITY = {
         },
         {
           "start": "2027-11-27",
-          "end": "2027-11-28"
+          "end": "2027-11-29"
         }
       ]
     },
     "happy-place": {
       "unavailable": [
-        {
-          "start": "2026-11-24",
-          "end": "2026-11-26"
-        },
         {
           "start": "2026-11-27",
           "end": "2026-12-04"
@@ -41,7 +37,7 @@ window.ORSINI_AVAILABILITY = {
         },
         {
           "start": "2027-11-27",
-          "end": "2027-11-28"
+          "end": "2027-11-29"
         }
       ]
     }
